@@ -4,7 +4,7 @@ import { addDoc, collection, Firestore } from "firebase/firestore"
 export async function seedDataBase(db: Firestore) {
     const users = [
         {
-            userId: "NvPY9M9MzFTARQ6M816YAzDJxZ72",
+            userId: "1KFtS7A2pcR92qX67dabcp44INB2",
             username: "rodion",
             fullName: "Rodion Bozhenko",
             emailAddress: "bozhenko.rodion@mail.ru",
@@ -18,7 +18,7 @@ export async function seedDataBase(db: Firestore) {
             fullName: "Ozzy Osborne",
             emailAddress: "ozzy.osborne@gmail.com",
             following: [],
-            followers: ["NvPY9M9MzFTARQ6M816YAzDJxZ72"],
+            followers: ["1KFtS7A2pcR92qX67dabcp44INB2"],
             dateCreated: Date.now(),
         },
         {
@@ -27,7 +27,7 @@ export async function seedDataBase(db: Firestore) {
             fullName: "Lemmy Kilmister",
             emailAddress: "lemmy.kilmister@gmail.com",
             following: [],
-            followers: ["NvPY9M9MzFTARQ6M816YAzDJxZ72"],
+            followers: ["1KFtS7A2pcR92qX67dabcp44INB2"],
             dateCreated: Date.now(),
         },
         {
@@ -36,16 +36,16 @@ export async function seedDataBase(db: Firestore) {
             fullName: "David Bowie",
             emailAddress: "david.bowie@gmail.com",
             following: [],
-            followers: ["NvPY9M9MzFTARQ6M816YAzDJxZ72"],
+            followers: ["1KFtS7A2pcR92qX67dabcp44INB2"],
             dateCreated: Date.now(),
         },
         {
             userId: "5",
             username: "robert",
             fullName: "Robert Plant",
-            emailAddress: "robert.bowie@gmail.com",
+            emailAddress: "robert.plant@gmail.com",
             following: [],
-            followers: ["NvPY9M9MzFTARQ6M816YAzDJxZ72"],
+            followers: ["1KFtS7A2pcR92qX67dabcp44INB2"],
             dateCreated: Date.now(),
         },
         {
@@ -54,7 +54,7 @@ export async function seedDataBase(db: Firestore) {
             fullName: "John Lennon",
             emailAddress: "john.lennon@gmail.com",
             following: [],
-            followers: ["NvPY9M9MzFTARQ6M816YAzDJxZ72"],
+            followers: ["1KFtS7A2pcR92qX67dabcp44INB2"],
             dateCreated: Date.now(),
         },
     ]
