@@ -1,19 +1,23 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 import React, { FormEvent, useCallback, useState } from "react"
 import { Form } from "components"
 import { Link, useNavigate } from "react-router-dom"
 import * as ROUTES from "constants/routes"
 import styled from "styled-components"
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth"
+import { doesUsernameExist } from "services/firebase"
+import { addDoc, collection } from "firebase/firestore"
+import { db } from "firebase/firebase"
 
 const Login = () => {
-    const [fullname, setFullname] = useState("")
+    const [fullName, setfullName] = useState("")
     const [username, setUsername] = useState("")
-    const [email, setEmail] = useState("")
+    const [emailAddress, setEmailAddress] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const [isSubmiting, setIsSubmiting] = useState(false)
-    const isInvalid = email === "" || password === "" || fullname === "" || username === ""
+    const isInvalid = emailAddress === "" || password === "" || fullName === "" || username === ""
 
     const navigate = useNavigate()
 
@@ -21,20 +25,42 @@ const Login = () => {
         async (e: FormEvent) => {
             e.preventDefault()
             const auth = getAuth()
-            try {
-                setIsSubmiting(true)
-                await createUserWithEmailAndPassword(auth, email, password)
-                navigate(ROUTES.DASHBOARD)
-            } catch (e: any) {
-                setEmail("")
-                setPassword("")
+            setIsSubmiting(true)
+            const usernameExist = await doesUsernameExist(username)
+            if (!usernameExist) {
+                try {
+                    const createdUserResult = await createUserWithEmailAndPassword(
+                        auth,
+                        emailAddress,
+                        password
+                    )
+
+                    auth.currentUser &&
+                        (await updateProfile(auth.currentUser, { displayName: username }))
+
+                    await addDoc(collection(db, "users"), {
+                        userId: createdUserResult.user.uid,
+                        username: username.toLowerCase(),
+                        fullName,
+                        emailAddress: emailAddress.toLowerCase(),
+                        following: ["2"],
+                        followers: [],
+                        dateCreated: Date.now(),
+                    })
+                    navigate(ROUTES.DASHBOARD)
+                } catch (e: any) {
+                    setEmailAddress("")
+                    setPassword("")
+                    setfullName("")
+                    setIsSubmiting(false)
+                    setError(e.message)
+                }
+            } else {
                 setUsername("")
-                setFullname("")
-                setIsSubmiting(false)
-                setError(e.message)
+                setError("This username already exist, please try another.")
             }
         },
-        [email, password]
+        [emailAddress, password]
     )
     return (
         <Wrapper>
@@ -48,14 +74,14 @@ const Login = () => {
                         <Form.Input
                             type="email"
                             placeholder="Email address"
-                            value={email}
-                            onChange={({ target }) => setEmail(target.value)}
+                            value={emailAddress}
+                            onChange={({ target }) => setEmailAddress(target.value)}
                         />
                         <Form.Input
                             type="text"
                             placeholder="Full name"
-                            value={fullname}
-                            onChange={({ target }) => setFullname(target.value)}
+                            value={fullName}
+                            onChange={({ target }) => setfullName(target.value)}
                         />
                         <Form.Input
                             type="text"

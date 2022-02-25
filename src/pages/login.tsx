@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 import React, { FormEvent, useCallback, useState } from "react"
 import { Form } from "components"
