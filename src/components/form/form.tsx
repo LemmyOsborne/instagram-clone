@@ -11,6 +11,7 @@ import {
     ForgetPassword,
     LoginSignupRedirect,
     Bottom,
+    Error,
 } from "./form.styles"
 
 interface FormComposition extends React.FC {
@@ -24,6 +25,7 @@ interface FormComposition extends React.FC {
     ForgetPassword: React.FC<React.HTMLAttributes<HTMLSpanElement>>
     LoginSignupRedirect: React.FC<React.HTMLAttributes<HTMLDivElement>>
     Bottom: React.FC<React.HTMLAttributes<HTMLDivElement>>
+    Error: React.FC<React.HTMLAttributes<HTMLSpanElement>>
 }
 
 export const Form: FormComposition = ({ children, ...rest }) => {
@@ -81,4 +83,8 @@ Form.Bottom = function FormBottom({ ...rest }) {
             </div>
         </Bottom>
     )
+}
+
+Form.Error = function FormError({ children, ...rest }) {
+    return <Error {...rest}>{children}</Error>
 }

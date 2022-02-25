@@ -48,8 +48,13 @@ export const Input = styled.input`
 
 export const Button = styled.button`
     width: 75%;
-    background-color: #b2dffc;
+    background-color: #00a0f7;
     color: white;
+
+    &:disabled {
+        cursor: default;
+        opacity: 0.3;
+    }
 `
 
 export const Divider = styled.span`
@@ -139,4 +144,10 @@ export const Bottom = styled.div`
             margin-right: 10px;
         }
     }
+`
+
+export const Error = styled.span`
+    color: #ffb72b;
+    font-size: 14px;
+    margin: 10px 0;
 `
