@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
     border: 0;
     outline: none;
     display: inline-block;
-    padding: 12px 24px;
+    padding: 8px 24px;
     font-size: 14px;
     border-radius: 4px;
     margin-top: 5px;
@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
   a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
   input {
