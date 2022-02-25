@@ -148,7 +148,7 @@ export const Bottom = styled.div`
 `
 
 export const Error = styled.span`
-    color: #ffb72b;
+    color: #f76e11;
     font-size: 14px;
     margin: 10px 0;
 `
