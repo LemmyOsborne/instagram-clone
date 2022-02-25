@@ -4,14 +4,16 @@ import { Form } from "components"
 import { Link, useNavigate } from "react-router-dom"
 import * as ROUTES from "constants/routes"
 import styled from "styled-components"
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
 
 const Login = () => {
+    const [fullname, setFullname] = useState("")
+    const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const [isSubmiting, setIsSubmiting] = useState(false)
-    const isInvalid = email === "" || password === ""
+    const isInvalid = email === "" || password === "" || fullname === "" || username === ""
 
     const navigate = useNavigate()
 
@@ -21,11 +23,13 @@ const Login = () => {
             const auth = getAuth()
             try {
                 setIsSubmiting(true)
-                await signInWithEmailAndPassword(auth, email, password)
+                await createUserWithEmailAndPassword(auth, email, password)
                 navigate(ROUTES.DASHBOARD)
             } catch (e: any) {
                 setEmail("")
                 setPassword("")
+                setUsername("")
+                setFullname("")
                 setIsSubmiting(false)
                 setError(e.message)
             }
@@ -34,20 +38,30 @@ const Login = () => {
     )
     return (
         <Wrapper>
-            <img
-                src="images/misc/iphone-with-profile.jpg"
-                alt="Iphone profile"
-                style={{ width: "454px", height: "618px" }}
-            />
             <Form>
                 <Form.Wrapper>
                     <Form.Base onSubmit={handleSubmit}>
                         <Form.Logo />
+                        <Form.Text>Sign up to see photos and videos from your friends.</Form.Text>
+                        <Form.Button>Log in with Facebook</Form.Button>
+                        <Form.Divider />
                         <Form.Input
                             type="email"
-                            placeholder="Phone number, username or email"
+                            placeholder="Email address"
                             value={email}
                             onChange={({ target }) => setEmail(target.value)}
+                        />
+                        <Form.Input
+                            type="text"
+                            placeholder="Full name"
+                            value={fullname}
+                            onChange={({ target }) => setFullname(target.value)}
+                        />
+                        <Form.Input
+                            type="text"
+                            placeholder="Username"
+                            value={username}
+                            onChange={({ target }) => setUsername(target.value)}
                         />
                         <Form.Input
                             type="password"
@@ -57,16 +71,17 @@ const Login = () => {
                         />
                         {error && <Form.Error>{error}</Form.Error>}
                         <Form.Button disabled={isInvalid} type="submit">
-                            {isSubmiting ? "Submiting..." : "Log In"}
+                            {isSubmiting ? "Submiting..." : "Sign Up"}
                         </Form.Button>
+                        <Form.SmallText>
+                            By signing up, you agree to our{" "}
+                            <span>Terms, Data Policy and Cookie Policy.</span>
+                        </Form.SmallText>
                     </Form.Base>
-                    <Form.Divider />
-                    <Form.FacebookLogin />
-                    <Form.ForgotPassword />
                 </Form.Wrapper>
                 <Form.LoginSignupRedirect>
-                    Don't have an account?
-                    <Link to={ROUTES.SIGN_UP}>Sign up</Link>
+                    Have an account?
+                    <Link to={ROUTES.LOGIN}>Log in</Link>
                 </Form.LoginSignupRedirect>
                 <Form.Bottom />
             </Form>
@@ -76,10 +91,10 @@ const Login = () => {
 
 const Wrapper = styled.div`
     display: flex;
-    align-items: center;
     justify-content: center;
     width: 100vw;
     height: 100vh;
+    margin-top: 2.5rem;
 `
 
 export default Login

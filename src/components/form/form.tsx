@@ -8,10 +8,12 @@ import {
     Button,
     Divider,
     FacebookLogin,
-    ForgetPassword,
+    ForgotPassword,
     LoginSignupRedirect,
     Bottom,
     Error,
+    Text,
+    SmallText,
 } from "./form.styles"
 
 interface FormComposition extends React.FC {
@@ -22,10 +24,12 @@ interface FormComposition extends React.FC {
     Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>>
     Divider: React.FC<React.HTMLAttributes<HTMLSpanElement>>
     FacebookLogin: React.FC<React.AnchorHTMLAttributes<HTMLAnchorElement>>
-    ForgetPassword: React.FC<React.HTMLAttributes<HTMLSpanElement>>
+    ForgotPassword: React.FC<React.HTMLAttributes<HTMLSpanElement>>
     LoginSignupRedirect: React.FC<React.HTMLAttributes<HTMLDivElement>>
     Bottom: React.FC<React.HTMLAttributes<HTMLDivElement>>
     Error: React.FC<React.HTMLAttributes<HTMLSpanElement>>
+    Text: React.FC<React.HTMLAttributes<HTMLHeadingElement>>
+    SmallText: React.FC<React.HTMLAttributes<HTMLSpanElement>>
 }
 
 export const Form: FormComposition = ({ children, ...rest }) => {
@@ -65,8 +69,8 @@ Form.FacebookLogin = function FormFacebookLogin({ ...rest }) {
     )
 }
 
-Form.ForgetPassword = function FormForgetPassword({ ...rest }) {
-    return <ForgetPassword {...rest}>Forgotten your password?</ForgetPassword>
+Form.ForgotPassword = function FormForgotPassword({ ...rest }) {
+    return <ForgotPassword {...rest}>Forgotten your password?</ForgotPassword>
 }
 
 Form.LoginSignupRedirect = function FormLoginSignupRedirect({ children, ...rest }) {
@@ -87,4 +91,12 @@ Form.Bottom = function FormBottom({ ...rest }) {
 
 Form.Error = function FormError({ children, ...rest }) {
     return <Error {...rest}>{children}</Error>
+}
+
+Form.Text = function FormText({ children, ...rest }) {
+    return <Text {...rest}>{children}</Text>
+}
+
+Form.SmallText = function FormSmallText({ children, ...rest }) {
+    return <SmallText {...rest}>{children}</SmallText>
 }

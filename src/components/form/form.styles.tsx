@@ -27,7 +27,7 @@ export const Base = styled.form`
 
 export const Logo = styled.img`
     width: 50%;
-    margin: 3rem 0;
+    margin: 2rem 0 1rem;
 `
 
 export const Input = styled.input`
@@ -50,6 +50,7 @@ export const Button = styled.button`
     width: 75%;
     background-color: #00a0f7;
     color: white;
+    font-weight: 600;
 
     &:disabled {
         cursor: default;
@@ -97,7 +98,7 @@ export const FacebookLogin = styled.a`
     }
 `
 
-export const ForgetPassword = styled.span`
+export const ForgotPassword = styled.span`
     color: #5c5f97;
     font-size: 12px;
     cursor: pointer;
@@ -150,4 +151,25 @@ export const Error = styled.span`
     color: #ffb72b;
     font-size: 14px;
     margin: 10px 0;
+`
+
+export const Text = styled.h2`
+    color: #8e8e8e;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    text-align: center;
+`
+
+export const SmallText = styled.p`
+    color: #8e8e8e;
+    font-size: 12px;
+    text-align: center;
+    margin: 20px 0;
+    width: 75%;
+    line-height: 1.5;
+
+    span {
+        font-weight: 600;
+    }
 `
