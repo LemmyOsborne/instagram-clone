@@ -1,11 +1,13 @@
+/* eslint-disable linebreak-style */
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./App"
-// import "./firebase/firebase"
+import { GlobalStyles } from "styles/global-styles"
+import App from "./app"
 
 ReactDOM.render(
-    <React.StrictMode>
+    <>
+        <GlobalStyles />
         <App />
-    </React.StrictMode>,
+    </>,
     document.getElementById("root")
 )

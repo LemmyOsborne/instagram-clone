@@ -16,26 +16,12 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
+    "plugins": ["react", "@typescript-eslint"],
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ]
+        "indent": ["warn", 4],
+        "linebreak-style": ["warn", "windows"],
+        "quotes": ["warn", "double"],
+        "semi": ["warn", "never"],
+        "react/prop-types": 0
     }
 }

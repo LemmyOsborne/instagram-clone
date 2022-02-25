@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
+// import { getFirestore } from "firebase/firestore"
 // import { seedDataBase } from "seed"
 
 const firebaseConfig = {
@@ -13,7 +13,7 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig)
 
-const db = getFirestore(firebase)
+// const db = getFirestore(firebase)
 
 // seedDataBase(db)
 
