@@ -1,5 +1,6 @@
 import { db } from "firebase/firebase"
 import { collection, query, where, getDocs } from "firebase/firestore"
+import { IUser } from "interfaces/interfaces"
 
 export const doesUsernameExist = async (username: string) => {
     const q = query(collection(db, "users"), where("username", "==", username))
@@ -8,12 +9,11 @@ export const doesUsernameExist = async (username: string) => {
     return querySnapshot.docs.length > 0
 }
 
-export const getUserById = async (userId: number) => {
+export const getUserById = async (userId?: string) => {
     const q = query(collection(db, "users"), where("userId", "==", userId))
     const querySnapshot = await getDocs(q)
     const user = querySnapshot.docs.map((item) => ({
-        ...item.data(),
-        docId: item.id,
+        ...(item.data() as IUser),
     }))
 
     return user

@@ -57,6 +57,7 @@ const Login = () => {
                 }
             } else {
                 setUsername("")
+                setIsSubmiting(false)
                 setError("This username already exist, please try another.")
             }
         },

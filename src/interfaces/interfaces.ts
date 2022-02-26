@@ -1,8 +1,9 @@
 export interface IUser {
     username: string
-    fullname: string
+    fullName: string
     emailAddress: string
     following: string[]
     followers: string[]
     dateCreated: number
+    userId: string
 }
