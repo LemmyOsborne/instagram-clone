@@ -1,13 +1,14 @@
+import { IUser } from "interfaces/interfaces"
 import { useState, useEffect } from "react"
 import { getUserById } from "services/firebase"
 
-export const useUser = (userId: number) => {
-    const [activeUser, setActiveUser] = useState({})
+export const useUser = (userId?: string) => {
+    const [activeUser, setActiveUser] = useState<IUser>()
 
     useEffect(() => {
-        const getUserObjByUserId = async (userId: number) => {
+        const getUserObjByUserId = async (userId?: string) => {
             const [user] = await getUserById(userId)
-            setActiveUser(user)
+            setActiveUser(user || {})
         }
 
         if (userId) {
