@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { collection, getDocs, query, where } from "firebase/firestore"
-import { db } from "firebase/firebase"
 import { IUser } from "interfaces/interfaces"
 import { Title, TitleWrapper, SmallText } from "./suggestions.styles"
 import User from "../user/user"
@@ -10,6 +8,7 @@ export const Suggestions: React.FC<{ username: string }> = ({ username }) => {
     const [users, setUsers] = useState<IUser[]>()
 
     useEffect(() => {
+        console.log(username)
         async function suggestedUsers() {
             const users = await getSuggestedUsers(username)
             setUsers(users)

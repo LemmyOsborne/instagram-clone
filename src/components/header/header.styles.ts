@@ -57,7 +57,6 @@ export const DropdownMenu = styled.div`
     right: 0;
     display: flex;
     flex-direction: column;
-    z-index: 3;
     pointer-events: none;
 
     div {
@@ -86,6 +85,7 @@ export const Dropdown = styled.div`
     & > ${Avatar}:focus + ${DropdownMenu} {
         opacity: 1;
         transform: translateY(0);
+        pointer-events: all;
     }
 `
 
