@@ -40,8 +40,14 @@ export const Header = () => {
                                 <img src="/images/saved.svg" />
                                 Saved
                             </div>
-                            <div>Setting</div>
-                            <div onClick={signOutHandler}>Log Out</div>
+                            <div>
+                                <img src="/images/settings.svg" />
+                                Setting
+                            </div>
+                            <div onClick={signOutHandler}>
+                                <img src="/images/logout.svg" />
+                                Log Out
+                            </div>
                         </DropdownMenu>
                     </Dropdown>
                 </Icons>
