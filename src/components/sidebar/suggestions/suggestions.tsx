@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from "react"
 import { IUser } from "interfaces/interfaces"
-import { Title, TitleWrapper, SmallText } from "./suggestions.styles"
-import User from "../user/user"
+import {
+    Title,
+    TitleWrapper,
+    SmallText,
+    Button,
+    Container,
+    Image,
+    Text,
+    Wrapper,
+} from "./suggestions.styles"
 import { getSuggestedUsers } from "services/firebase"
+import { Link } from "react-router-dom"
 
-export const Suggestions: React.FC<{ username: string }> = ({ username }) => {
+interface ISuggestionsComponent {
+    username: string
+    authFollowing: string[]
+}
+
+export const Suggestions: React.FC<ISuggestionsComponent> = ({ username, authFollowing }) => {
     const [users, setUsers] = useState<IUser[]>()
 
     useEffect(() => {
@@ -25,14 +39,23 @@ export const Suggestions: React.FC<{ username: string }> = ({ username }) => {
                 <Title>Suggestions for you</Title>
                 <SmallText>See All</SmallText>
             </TitleWrapper>
-            {users?.map((user) => (
-                <User
-                    buttonText
-                    imageSmall
-                    key={user.userId}
-                    fullName={user.fullName}
-                    username={user.username}
-                />
+            {users?.map(({ userId, username, fullName }) => (
+                <Container key={userId}>
+                    <Wrapper>
+                        <Link to={`/p/${username}`}>
+                            <Image src={`/images/avatars/${username}.jpg`} />
+                        </Link>
+                        <Link to={`/p/${username}`}>
+                            <Text>{username}</Text>
+                            <Text>{fullName}</Text>
+                        </Link>
+                    </Wrapper>
+                    {authFollowing.includes(userId) ? (
+                        <Button>Unfollow</Button>
+                    ) : (
+                        <Button>Follow</Button>
+                    )}
+                </Container>
             ))}
         </>
     )

@@ -12,8 +12,8 @@ export const Wrapper = styled.div`
     align-items: center;
 `
 
-export const Image = styled.img<{ imageSmall?: boolean }>`
-    width: ${({ imageSmall }) => (imageSmall ? "35px" : "60px")};
+export const Image = styled.img`
+    width: 60px;
     border-radius: 50%;
     border: 1px solid lightgrey;
     margin-right: 15px;

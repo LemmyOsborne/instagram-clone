@@ -9,11 +9,12 @@ import { useUser } from "hooks/use-user"
 export const Sidebar = () => {
     const userFromContext = useContext(FirebaseAuthContext)
     const { user } = useUser(userFromContext?.uid)
+    console.table(user)
 
     return user ? (
         <Container>
             <User username={user.username} fullName={user.fullName} />
-            <Suggestions username={user.username} />
+            <Suggestions username={user.username} authFollowing={user.following} />
         </Container>
     ) : null
 }

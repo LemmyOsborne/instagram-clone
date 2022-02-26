@@ -5,23 +5,21 @@ import { Button, Container, Image, Text, Wrapper } from "./user.styles"
 interface IUserComponent {
     username?: string
     fullName?: string
-    imageSmall?: boolean
-    buttonText?: boolean
 }
 
-const User: React.FC<IUserComponent> = ({ fullName, username, imageSmall, buttonText }) => {
+const User: React.FC<IUserComponent> = ({ fullName, username }) => {
     return (
         <Container>
             <Wrapper>
                 <Link to={`/p/${username}`}>
-                    <Image imageSmall={imageSmall} src={`/images/avatars/${username}.jpg`} />
+                    <Image src={`/images/avatars/${username}.jpg`} />
                 </Link>
                 <Link to={`/p/${username}`}>
                     <Text>{username}</Text>
                     <Text>{fullName}</Text>
                 </Link>
             </Wrapper>
-            {buttonText ? <Button>Follow</Button> : <Button>Switch</Button>}
+            <Button>Switch</Button>
         </Container>
     )
 }
