@@ -58,6 +58,7 @@ export const DropdownMenu = styled.div`
     display: flex;
     flex-direction: column;
     z-index: 3;
+    pointer-events: none;
 
     div {
         padding: 8px 16px;
@@ -86,4 +87,10 @@ export const Dropdown = styled.div`
         opacity: 1;
         transform: translateY(0);
     }
+`
+
+export const Button = styled.button<{ bg?: boolean }>`
+    background: ${({ bg }) => (bg ? "#00a0f7" : "none")};
+    color: ${({ bg }) => (bg ? "white" : "#00a0f7")};
+    border: none;
 `
