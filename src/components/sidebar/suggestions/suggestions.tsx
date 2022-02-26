@@ -4,22 +4,20 @@ import { db } from "firebase/firebase"
 import { IUser } from "interfaces/interfaces"
 import { Title, TitleWrapper, SmallText } from "./suggestions.styles"
 import User from "../user/user"
+import { getSuggestedUsers } from "services/firebase"
 
-export const Suggestions: React.FC<{ username?: string }> = ({ username }) => {
+export const Suggestions: React.FC<{ username: string }> = ({ username }) => {
     const [users, setUsers] = useState<IUser[]>()
 
     useEffect(() => {
-        const getAllUsers = async () => {
-            const q = query(collection(db, "users"), where("username", "!=", username))
-            const querySnapshot = await getDocs(q)
-            return querySnapshot.docs.map((doc) => ({
-                ...(doc.data() as IUser),
-            }))
+        async function suggestedUsers() {
+            const users = await getSuggestedUsers(username)
+            setUsers(users)
         }
 
-        getAllUsers().then((users) => {
-            setUsers(users)
-        })
+        if (username) {
+            suggestedUsers()
+        }
     }, [username])
 
     return (

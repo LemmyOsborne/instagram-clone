@@ -18,3 +18,11 @@ export const getUserById = async (userId?: string) => {
 
     return user
 }
+
+export const getSuggestedUsers = async (username: string) => {
+    const q = query(collection(db, "users"), where("username", "!=", username))
+    const querySnapshot = await getDocs(q)
+    return querySnapshot.docs.map((doc) => ({
+        ...(doc.data() as IUser),
+    }))
+}
