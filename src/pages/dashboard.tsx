@@ -2,14 +2,17 @@ import React from "react"
 import { Header, Sidebar } from "components"
 import styled from "styled-components"
 import { Timeline } from "components"
+import { useWindowSize } from "hooks/useWindowSize"
 
 const Dashboard = () => {
+    const { width } = useWindowSize()
+
     return (
         <>
             <Header />
             <Container>
                 <Timeline />
-                <Sidebar />
+                {width > 1000 && <Sidebar />}
             </Container>
         </>
     )

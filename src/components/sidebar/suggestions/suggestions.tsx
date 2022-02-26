@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { collection, getDocs, query, where } from "firebase/firestore"
 import { db } from "firebase/firebase"
 import { IUser } from "interfaces/interfaces"
-import { Container, Title, TitleWrapper, SmallText } from "./suggestions.styles"
+import { Title, TitleWrapper, SmallText } from "./suggestions.styles"
 import User from "../user/user"
 
 export const Suggestions: React.FC<{ username?: string }> = ({ username }) => {
@@ -19,12 +19,11 @@ export const Suggestions: React.FC<{ username?: string }> = ({ username }) => {
 
         getAllUsers().then((users) => {
             setUsers(users)
-            console.log(users)
         })
     }, [username])
 
     return (
-        <Container>
+        <>
             <TitleWrapper>
                 <Title>Suggestions for you</Title>
                 <SmallText>See All</SmallText>
@@ -38,6 +37,6 @@ export const Suggestions: React.FC<{ username?: string }> = ({ username }) => {
                     username={user.username}
                 />
             ))}
-        </Container>
+        </>
     )
 }
