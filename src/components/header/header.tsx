@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import {
     Container,
@@ -17,6 +17,7 @@ import { FirebaseAuthContext } from "context/firebase"
 
 export const Header = () => {
     const user = useContext(FirebaseAuthContext)
+    const [isOpen, setIsOpen] = useState(false)
 
     const signOutHandler = () => {
         const auth = getAuth()
@@ -37,27 +38,29 @@ export const Header = () => {
                             <img src="/images/home.svg" alt="Home" />
                         </Link>
                         <Dropdown>
-                            <Avatar>
-                                <img src="/images/avatars/rodion.jpg" alt="User" />
+                            <Avatar onClick={() => setIsOpen((isOpen) => !isOpen)}>
+                                <img src={`/images/avatars/${user.displayName}.jpg`} alt="User" />
                             </Avatar>
-                            <DropdownMenu>
-                                <div>
-                                    <img src="/images/profile.svg" alt="Profile" />
-                                    Profile
-                                </div>
-                                <div>
-                                    <img src="/images/saved.svg" alt="Saved" />
-                                    Saved
-                                </div>
-                                <div>
-                                    <img src="/images/settings.svg" alt="Settings" />
-                                    Setting
-                                </div>
-                                <div onClick={signOutHandler}>
-                                    <img src="/images/logout.svg" alt="Logout" />
-                                    Log Out
-                                </div>
-                            </DropdownMenu>
+                            {isOpen && (
+                                <DropdownMenu>
+                                    <div>
+                                        <img src="/images/profile.svg" alt="Profile" />
+                                        Profile
+                                    </div>
+                                    <div>
+                                        <img src="/images/saved.svg" alt="Saved" />
+                                        Saved
+                                    </div>
+                                    <div>
+                                        <img src="/images/settings.svg" alt="Settings" />
+                                        Setting
+                                    </div>
+                                    <div onClick={signOutHandler}>
+                                        <img src="/images/logout.svg" alt="Logout" />
+                                        Log Out
+                                    </div>
+                                </DropdownMenu>
+                            )}
                         </Dropdown>
                     </Icons>
                 ) : (

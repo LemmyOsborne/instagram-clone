@@ -49,7 +49,6 @@ export const Avatar = styled.button`
 export const DropdownMenu = styled.div`
     transform-origin: top center;
     transition: opacity 75ms linear, transform 38ms ease-out, -webkit-transform 38ms ease-out;
-    opacity: 0;
     background-color: #fff;
     border-radius: 6px;
     box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
@@ -57,7 +56,6 @@ export const DropdownMenu = styled.div`
     right: 0;
     display: flex;
     flex-direction: column;
-    pointer-events: none;
 
     div {
         padding: 8px 16px;
@@ -82,11 +80,11 @@ export const DropdownMenu = styled.div`
 export const Dropdown = styled.div`
     position: relative;
 
-    & > ${Avatar}:focus + ${DropdownMenu} {
+    /* & > ${Avatar}:focus + ${DropdownMenu} {
         opacity: 1;
         transform: translateY(0);
         pointer-events: all;
-    }
+    } */
 `
 
 export const Button = styled.button<{ bg?: boolean }>`
