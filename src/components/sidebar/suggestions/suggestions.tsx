@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react"
 import { IUser } from "interfaces/interfaces"
 import { Title, TitleWrapper, SmallText } from "./suggestions.styles"
-import User from "../user/user"
-import { getSuggestedUsers } from "services/firebase"
+import { getSuggestedProfiles } from "services/firebase"
+import { SuggestedProfiles } from "./suggested-profiles"
 
-export const Suggestions: React.FC<{ username: string }> = ({ username }) => {
-    const [users, setUsers] = useState<IUser[]>()
+interface ISuggestions {
+    loggedUserDocId: string
+    loggedUserId: string
+    following: string[]
+}
+
+export const Suggestions: React.FC<ISuggestions> = ({
+    loggedUserDocId,
+    loggedUserId,
+    following,
+}) => {
+    const [profiles, setProfiles] = useState<IUser[]>()
 
     useEffect(() => {
-        console.log(username)
-        async function suggestedUsers() {
-            const users = await getSuggestedUsers(username)
-            setUsers(users)
+        async function suggestedProfiles() {
+            const profiles = await getSuggestedProfiles(loggedUserId, following)
+            setProfiles(profiles)
         }
 
-        if (username) {
-            suggestedUsers()
+        if (loggedUserDocId) {
+            suggestedProfiles()
         }
-    }, [username])
+    }, [loggedUserId])
 
     return (
         <>
@@ -25,13 +34,15 @@ export const Suggestions: React.FC<{ username: string }> = ({ username }) => {
                 <Title>Suggestions for you</Title>
                 <SmallText>See All</SmallText>
             </TitleWrapper>
-            {users?.map((user) => (
-                <User
-                    buttonText
-                    imageSmall
-                    key={user.userId}
-                    fullName={user.fullName}
-                    username={user.username}
+            {profiles?.map(({ fullName, username, docId, userId }) => (
+                <SuggestedProfiles
+                    key={docId}
+                    username={username}
+                    fullName={fullName}
+                    loggedUserDocId={loggedUserDocId}
+                    loggedUserId={loggedUserId}
+                    profileDocId={docId}
+                    profileId={userId}
                 />
             ))}
         </>

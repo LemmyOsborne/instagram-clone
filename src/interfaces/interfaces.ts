@@ -6,4 +6,5 @@ export interface IUser {
     followers: string[]
     dateCreated: number
     userId: string
+    docId: string
 }

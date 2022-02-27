@@ -1,5 +1,5 @@
 import { db } from "firebase/firebase"
-import { collection, query, where, getDocs } from "firebase/firestore"
+import { collection, query, where, getDocs, updateDoc, doc, arrayUnion } from "firebase/firestore"
 import { IUser } from "interfaces/interfaces"
 
 export const doesUsernameExist = async (username: string) => {
@@ -9,20 +9,42 @@ export const doesUsernameExist = async (username: string) => {
     return querySnapshot.docs.length > 0
 }
 
-export const getUserById = async (userId?: string) => {
+export const getUserById = async (userId: string | undefined) => {
     const q = query(collection(db, "users"), where("userId", "==", userId))
     const querySnapshot = await getDocs(q)
-    const user = querySnapshot.docs.map((item) => ({
-        ...(item.data() as IUser),
+    const LoggedUser = querySnapshot.docs.map((doc) => ({
+        ...(doc.data() as IUser),
+        docId: doc.id,
     }))
 
-    return user
+    return LoggedUser
 }
 
-export const getSuggestedUsers = async (username: string) => {
-    const q = query(collection(db, "users"), where("username", "!=", username))
+export const getSuggestedProfiles = async (docId: string, following: string[]) => {
+    const q = query(collection(db, "users"), where("userId", "!=", docId))
     const querySnapshot = await getDocs(q)
-    return querySnapshot.docs.map((doc) => ({
-        ...(doc.data() as IUser),
-    }))
+    return querySnapshot.docs
+        .map((doc) => ({
+            ...(doc.data() as IUser),
+            docId: doc.id,
+        }))
+        .filter((profile) => !following.includes(profile.userId))
+}
+
+export const updateLoggedUserFollowing = async (loggedUserDocId: string, profileId: string) => {
+    const loggedUserRef = doc(db, "users", loggedUserDocId)
+    const result = await updateDoc(loggedUserRef, {
+        following: arrayUnion(profileId),
+    })
+
+    return result
+}
+
+export const updateFollowedUserFollowing = async (loggedUserId: string, profileDocId: string) => {
+    const loggedUserRef = doc(db, "users", profileDocId)
+    const result = await updateDoc(loggedUserRef, {
+        followers: arrayUnion(loggedUserId),
+    })
+
+    return result
 }

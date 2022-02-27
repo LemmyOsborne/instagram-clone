@@ -1,38 +1,48 @@
 import styled from "styled-components"
 
-export const Item = styled.div`
+export const Container = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
+    margin-bottom: 10px;
+`
 
-    img {
-        width: 60px;
-        border-radius: 50%;
-        border: 1px solid lightgrey;
+export const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+`
+
+export const Image = styled.img<{ imageSmall?: boolean }>`
+    width: 35px;
+    border-radius: 50%;
+    border: 1px solid lightgrey;
+    margin-right: 15px;
+`
+
+export const Text = styled.p`
+    font-weight: 600;
+
+    &:last-of-type {
+        color: #94a1b9;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 400;
+        cursor: text;
     }
+`
 
-    p {
-        font-weight: 600;
-
-        &:last-of-type {
-            color: #94a1b9;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            font-size: 14px;
-            line-height: 18px;
-            font-weight: 400;
-            cursor: text;
-        }
-    }
-
-    span {
-        color: #00a0f7;
-        justify-self: end;
-        font-size: 12px;
-        font-weight: 600;
-        cursor: pointer;
-    }
+export const Button = styled.button`
+    color: #00a0f7;
+    justify-self: end;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
 `
 
 export const Title = styled.p`
