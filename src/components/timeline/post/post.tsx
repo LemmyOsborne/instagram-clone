@@ -13,6 +13,12 @@ import {
     Caption,
     Bottom,
     LikesQuantity,
+    Input,
+    Button,
+    Form,
+    Comment,
+    CommentSection,
+    ToggleComments,
 } from "./post.styles"
 import { useUser } from "hooks/use-user"
 import { updateLike } from "services/firebase"
@@ -31,6 +37,7 @@ export const Post: React.FC<{ photo: IPhoto }> = ({
     },
 }) => {
     const [toggleLike, setToggleLike] = useState(userLikedPhoto)
+    const [showComments, setShowComments] = useState(false)
     const [likesQuantity, setLikesQuantity] = useState(likes.length)
     const { user } = useUser()
     const handleLike = () => {
@@ -83,6 +90,21 @@ export const Post: React.FC<{ photo: IPhoto }> = ({
                     </Link>
                     <p>{caption}</p>
                 </Caption>
+                <ToggleComments onClick={() => setShowComments(!showComments)}>
+                    View all comments
+                </ToggleComments>
+                <CommentSection showComments={showComments}>
+                    {comments.map((comment, index) => (
+                        <Comment key={index}>
+                            <Username>{comment.displayName}</Username>
+                            <p>{comment.comment}</p>
+                        </Comment>
+                    ))}
+                </CommentSection>
+                <Form>
+                    <Input placeholder="Add a comment..." />
+                    <Button>Post</Button>
+                </Form>
             </Bottom>
         </Container>
     )

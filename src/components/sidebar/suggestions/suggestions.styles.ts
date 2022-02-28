@@ -35,7 +35,7 @@ export const Text = styled.p`
 `
 
 export const Button = styled.button`
-    color: #00a0f7;
+    color: #0095f6;
     justify-self: end;
     font-size: 12px;
     font-weight: 600;

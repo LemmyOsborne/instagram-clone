@@ -27,6 +27,7 @@ const GlobalStyles = createGlobalStyle`
 
   input {
   outline: none;
+  border: none;
 }
 
 *{

@@ -38,7 +38,7 @@ export const Image = styled.img`
 export const Bottom = styled.section`
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 15px 15px 0;
 `
 
 export const Actions = styled.div`
@@ -67,8 +67,52 @@ export const LikesQuantity = styled.section`
 
 export const Caption = styled.section`
     display: flex;
+    margin-bottom: 15px;
 
     ${Username}:hover {
         text-decoration: underline;
     }
+`
+
+export const ToggleComments = styled.p`
+    color: #8e8e8e;
+    cursor: pointer;
+    margin-bottom: 10px;
+    user-select: none;
+`
+
+export const CommentSection = styled.section<{ showComments: boolean }>`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    display: ${({ showComments }) => (showComments ? "auto" : "none")};
+`
+
+export const Comment = styled.div`
+    display: flex;
+    margin-bottom: 5px;
+`
+
+export const Form = styled.form`
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border-top: 1px solid lightgrey;
+    padding: 5px;
+    box-sizing: content-box;
+`
+
+export const Input = styled.input`
+    width: 100%;
+    height: 18px;
+    font-size: 14px;
+    padding: 0 10px;
+`
+
+export const Button = styled.button`
+    color: #0095f6;
+    background: none;
+    font-weight: 600;
+    padding: 0;
 `
