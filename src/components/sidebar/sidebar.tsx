@@ -2,7 +2,7 @@
 import React from "react"
 import { Suggestions } from "./suggestions/suggestions"
 import User from "./user/user"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import { useUser } from "hooks/use-user"
 import { useWindowSize } from "hooks/useWindowSize"
 

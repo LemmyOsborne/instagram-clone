@@ -115,4 +115,9 @@ export const Button = styled.button`
     background: none;
     font-weight: 600;
     padding: 0;
+
+    :disabled {
+        pointer-events: none;
+        opacity: 0.3;
+    }
 `

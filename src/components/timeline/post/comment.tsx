@@ -20,6 +20,8 @@ interface ICommentComponent {
 export const Comment: React.FC<ICommentComponent> = ({ comments, docId, username }) => {
     const [showComments, setShowComments] = useState(false)
     const [commentText, setCommentText] = useState("")
+    const [newComment, setNewComment] = useState(false)
+    const isDisabled = commentText === ""
 
     const handleComments = async (e: FormEvent) => {
         e.preventDefault()
@@ -41,6 +43,12 @@ export const Comment: React.FC<ICommentComponent> = ({ comments, docId, username
                         <p>{comment.comment}</p>
                     </CommentItem>
                 ))}
+                {newComment ? (
+                    <CommentItem>
+                        <Username>{username}</Username>
+                        <p>{commentText}</p>
+                    </CommentItem>
+                ) : null}
             </CommentSection>
             <Form onSubmit={handleComments}>
                 <Input
@@ -48,7 +56,9 @@ export const Comment: React.FC<ICommentComponent> = ({ comments, docId, username
                     onChange={({ target }) => setCommentText(target.value)}
                     placeholder="Add a comment..."
                 />
-                <Button type="submit">Post</Button>
+                <Button onClick={() => setNewComment(true)} disabled={isDisabled} type="submit">
+                    Post
+                </Button>
             </Form>
         </>
     )
