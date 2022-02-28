@@ -1,7 +1,6 @@
 import React from "react"
-import { Header, Sidebar } from "components"
+import { Header, Sidebar, Timeline } from "components"
 import styled from "styled-components"
-import { Timeline } from "components"
 import { useWindowSize } from "hooks/useWindowSize"
 
 const Dashboard = () => {

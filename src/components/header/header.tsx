@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {
     Container,
     Avatar,
@@ -18,12 +18,17 @@ import { FirebaseAuthContext } from "context/firebase"
 export const Header = () => {
     const user = useContext(FirebaseAuthContext)
     const [isOpen, setIsOpen] = useState(false)
+    const navigate = useNavigate()
 
     const signOutHandler = () => {
         const auth = getAuth()
-        signOut(auth).catch((error: any) => {
-            console.error(error)
-        })
+        signOut(auth)
+            .then(() => {
+                navigate(ROUTES.LOGIN)
+            })
+            .catch((error: any) => {
+                console.error(error)
+            })
     }
 
     return (

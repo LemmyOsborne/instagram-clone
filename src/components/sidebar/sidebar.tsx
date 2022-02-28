@@ -7,7 +7,6 @@ import { useUser } from "hooks/use-user"
 
 export const Sidebar = () => {
     const { user } = useUser()
-    console.table(user)
 
     return user ? (
         <Container>
