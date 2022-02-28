@@ -8,3 +8,21 @@ export interface IUser {
     userId: string
     docId: string
 }
+
+export interface Comments {
+    comment: string
+    displayName: string
+}
+
+export interface IPhoto {
+    caption: string
+    comments: Comments[]
+    dateCreated: number
+    imageSrc: string
+    likes: string[]
+    photoId: number
+    userId: string
+    userLatitude: string
+    userLongitude: string
+    docId: string
+}
