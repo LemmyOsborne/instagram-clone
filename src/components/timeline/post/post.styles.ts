@@ -77,8 +77,15 @@ export const Caption = styled.section`
 export const ToggleComments = styled.p`
     color: #8e8e8e;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     user-select: none;
+`
+
+export const Posted = styled.p`
+    color: #8e8e8e;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 `
 
 export const CommentSection = styled.section<{ showComments: boolean }>`

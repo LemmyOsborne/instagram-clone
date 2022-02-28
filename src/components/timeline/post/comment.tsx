@@ -1,3 +1,4 @@
+import { formatDistance } from "date-fns"
 import { IComment } from "interfaces/interfaces"
 import React, { FormEvent, useState } from "react"
 import { updateComments } from "services/firebase"
@@ -9,18 +10,21 @@ import {
     Username,
     Input,
     Button,
+    Posted,
 } from "./post.styles"
 
 interface ICommentComponent {
     username: string | undefined
     docId: string
     comments: IComment[]
+    dateCreated: number
 }
 
 export const Comment: React.FC<ICommentComponent> = ({
     comments: allComments,
     docId,
     username,
+    dateCreated,
 }) => {
     const [showComments, setShowComments] = useState(false)
     const [comment, setComment] = useState("")
@@ -41,6 +45,7 @@ export const Comment: React.FC<ICommentComponent> = ({
             <ToggleComments onClick={() => setShowComments(!showComments)}>
                 View all {comments.length} comments
             </ToggleComments>
+            <Posted>{formatDistance(dateCreated, new Date())} ago</Posted>
             <CommentSection showComments={showComments}>
                 {comments.map((comment, index) => (
                     <CommentItem key={index}>

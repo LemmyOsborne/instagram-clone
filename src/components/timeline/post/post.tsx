@@ -7,7 +7,7 @@ import { Footer } from "./footer"
 import { Comment } from "./comment"
 
 export const Post: React.FC<{ photo: IPhoto }> = ({
-    photo: { imageSrc, caption, comments, username, likes, userLikedPhoto, docId },
+    photo: { imageSrc, caption, comments, username, likes, userLikedPhoto, docId, dateCreated },
 }) => {
     const { user } = useUser()
 
@@ -23,7 +23,12 @@ export const Post: React.FC<{ photo: IPhoto }> = ({
                 userLikedPhoto={userLikedPhoto}
                 username={username}
             >
-                <Comment comments={comments} docId={docId} username={user.username} />
+                <Comment
+                    dateCreated={dateCreated}
+                    comments={comments}
+                    docId={docId}
+                    username={user.username}
+                />
             </Footer>
         </Container>
     ) : null
