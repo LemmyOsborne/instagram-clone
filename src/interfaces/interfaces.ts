@@ -25,4 +25,6 @@ export interface IPhoto {
     userLatitude: string
     userLongitude: string
     docId: string
+    username: string
+    userLikedPhoto: boolean
 }
