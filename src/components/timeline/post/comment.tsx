@@ -1,6 +1,7 @@
 import { formatDistance } from "date-fns"
 import { IComment } from "interfaces/interfaces"
 import React, { FormEvent, useState } from "react"
+import { Link } from "react-router-dom"
 import { updateComments } from "services/firebase"
 import {
     ToggleComments,
@@ -49,7 +50,9 @@ export const Comment: React.FC<ICommentComponent> = ({
             <CommentSection showComments={showComments}>
                 {comments.map((comment, index) => (
                     <CommentItem key={index}>
-                        <Username>{comment.displayName}</Username>
+                        <Link to={`/p/${comment.displayName}`}>
+                            <Username>{comment.displayName}</Username>
+                        </Link>
                         <p>{comment.comment}</p>
                     </CommentItem>
                 ))}
