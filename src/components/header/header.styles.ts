@@ -9,6 +9,7 @@ export const Container = styled.header`
     background-color: #ffffff;
     border-bottom: 1px solid #dbdbdb;
     display: flex;
+    z-index: 100;
 `
 
 export const Wrapper = styled.div`
