@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
     background: #fafafa;
     font-family: "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", 
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif";
-    font-size: 16px;
+    font-size: 14px;
   }
  
   button {

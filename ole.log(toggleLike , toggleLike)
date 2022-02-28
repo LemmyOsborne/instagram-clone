@@ -1,0 +1,202 @@
+[33mcommit f0beffc347196f918f9d9e985c38ec7d1ac4d21c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Mon Feb 28 11:24:10 2022 +0300
+
+    update: update photo interface
+
+[33mcommit f5c19b282ee15a2df60947a4afd006487c40d588[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Mon Feb 28 11:17:09 2022 +0300
+
+    feat: timeline compnonent
+
+[33mcommit cb56e58a9ebd4375594866ce83c6d45e4d39c617[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Mon Feb 28 11:16:36 2022 +0300
+
+    feat: add a service function which retrieve photo from server
+
+[33mcommit 255127c6f260edceeee6fcb24881df36445b1c77[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Mon Feb 28 11:15:30 2022 +0300
+
+    feat: add interface for photo
+
+[33mcommit d1b3b9f348be6c71ed3335c06acb624238eac70f[m
+Merge: 6f1918c 556a1cd
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sun Feb 27 15:35:22 2022 +0300
+
+    feat: suggestions
+
+[33mcommit 6f1918ce97ad635dba7f0790c29eaf1523c6c00b[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sun Feb 27 15:31:26 2022 +0300
+
+    feat: add follow-unfollow functionallity
+
+[33mcommit cf99d3122ee5e1090f757b8658edb8cc160c29e1[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sun Feb 27 14:04:45 2022 +0300
+
+    fix: dropdown menu
+
+[33mcommit 556a1cde5b0db82964e8b546c304680395e270c8[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 14:16:02 2022 +0300
+
+    feat: add follow-unfollow display connected to firestore
+
+[33mcommit ad9bd9128aeea433db12ca2bc85114a070e845d2[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 13:54:35 2022 +0300
+
+    fix: fix dropdown menu
+
+[33mcommit c8fadb0938b80466f0d6ea00cfc6e4b70355df0c[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 13:13:27 2022 +0300
+
+    refactor: refactor async function in suggestions
+
+[33mcommit 2f97e5b184444be78ed2e46afb6efac640982914[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 12:42:52 2022 +0300
+
+    feat: add hook useWindowSize
+    
+    with this hook i getting rid of sidebar on medium and small viewports
+
+[33mcommit 7048b7320b8522d4aa7f019fde629ec670458302[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 12:32:58 2022 +0300
+
+    feat: create suggestions component
+
+[33mcommit 7c1af1061373a25272ffdc9b99c61ffcb1763ace[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 12:32:08 2022 +0300
+
+    chore: change image's names
+
+[33mcommit c08499eb75e66e7a3d3c0e83c1c019bb0b0aabb5[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 12:30:21 2022 +0300
+
+    fix: solve issue with retrieve user from firestore
+
+[33mcommit b4ffcd9c23a0970815e773d631e72bf3e11a0050[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 10:09:49 2022 +0300
+
+    feat: create sidebar
+
+[33mcommit 05e430ecfe53ad8456a5e15536b9501a2ac8a0cb[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 10:07:49 2022 +0300
+
+    update: header
+
+[33mcommit fa52e574f819de554a20dcbca59e594d8782e47f[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 06:00:29 2022 +0300
+
+    update: add new icons to dropdown menu
+
+[33mcommit 81f2204c1a87a66223a5c0cfd75a2692c94c6a02[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 05:47:32 2022 +0300
+
+    feat: header
+
+[33mcommit 912b21479bf65165fec67703d3fd7a2e38b8c0a2[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 03:00:20 2022 +0300
+
+    feat: add use user hook
+    
+    this hook returns user with all he's data stored in firestore
+
+[33mcommit 339f41900b9307e44370cc46363ee02f01904068[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 02:58:57 2022 +0300
+
+    feat: add user context and interface
+    
+    this context have all user's data, which stored in firestore
+
+[33mcommit 9a38690d30fe9e462f4d4bbd118b58cdf330da8e[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 02:56:53 2022 +0300
+
+    feat: add function which takes user from firestore
+    
+    this function takes an id from user after he's created and returns all he's data from firestore
+
+[33mcommit 58a76dd91c13d3f792042cc7be5bf4f32498b796[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Sat Feb 26 02:15:05 2022 +0300
+
+    feat: add a firebase auth provider
+    
+    this provider allows to whole application get the user from context
+
+[33mcommit 1fc6981b1f9034bd0876b911f7ed3012bc128e1f[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Fri Feb 25 21:09:08 2022 +0300
+
+    refactor: sign up user logic
+
+[33mcommit 8aeefca81cda4bb1e3d16ae9d14db9333473d43d[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Fri Feb 25 19:10:36 2022 +0300
+
+    feat: signup page
+
+[33mcommit 22b78792f491528f15de9965913c21350082b4c7[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Fri Feb 25 18:29:18 2022 +0300
+
+    refactor: login page
+
+[33mcommit 64bbbb5574c43a9289f411df5fdc16ce78d5e589[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Fri Feb 25 16:43:09 2022 +0300
+
+    feat: login page
+
+[33mcommit acf76450ae366c8825a67a16c8d629acc3f0dcbb[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Fri Feb 25 16:42:46 2022 +0300
+
+    fix: form
+
+[33mcommit 076d69b184533cf96545bc935c982513172d7a49[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Fri Feb 25 14:16:50 2022 +0300
+
+    feat: form component
+
+[33mcommit 36aaa7f21b7fec07c879aee7464a97d22d775cec[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Fri Feb 25 14:16:08 2022 +0300
+
+    styles: create global style
+
+[33mcommit be07e2fa25dc026cf9246eca611d149d65041ea1[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Thu Feb 24 21:46:46 2022 +0300
+
+    feat: seed a database
+
+[33mcommit c4ab52607e1d09e9474e032b5376a57bf5b5d9d7[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Thu Feb 24 18:43:22 2022 +0300
+
+    feat: images and seed file
+
+[33mcommit 47a90466d5f67ab3952a3cee7770a53c21c6295a[m
+Author: lemmyosborne <bozhenko.rodion@mail.ru>
+Date:   Thu Feb 24 16:18:33 2022 +0300
+
+    first commit

@@ -23,7 +23,7 @@ export const Sidebar = () => {
 }
 
 const Container = styled.div`
-    justify-self: end;
+    justify-self: flex-end;
     width: 300px;
     margin-top: 1rem;
 `

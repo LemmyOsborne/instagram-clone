@@ -1,5 +1,14 @@
 import { db } from "firebase/firebase"
-import { collection, query, where, getDocs, updateDoc, doc, arrayUnion } from "firebase/firestore"
+import {
+    collection,
+    query,
+    where,
+    getDocs,
+    updateDoc,
+    doc,
+    arrayUnion,
+    arrayRemove,
+} from "firebase/firestore"
 import { IPhoto, IUser } from "interfaces/interfaces"
 
 export const doesUsernameExist = async (username: string) => {
@@ -50,7 +59,6 @@ export const updateFollowedUserFollowing = async (loggedUserId: string, profileD
 }
 
 export const getPhotos = async (loggedUserId: string, following: string[]) => {
-    const loggedUser = await getUserById(loggedUserId)
     const q = query(collection(db, "photos"), where("userId", "in", following))
     const querySnapshot = await getDocs(q)
     const userFollowedPhotos = querySnapshot.docs.map((doc) => ({
@@ -61,9 +69,11 @@ export const getPhotos = async (loggedUserId: string, following: string[]) => {
     const photosWithUserDetails = await Promise.all(
         userFollowedPhotos.map(async (photo) => {
             let userLikedPhoto = false
+
             if (photo.likes.includes(loggedUserId)) {
                 userLikedPhoto = true
             }
+
             const user = await getUserById(photo.userId)
 
             const { username } = user[0]
@@ -73,4 +83,15 @@ export const getPhotos = async (loggedUserId: string, following: string[]) => {
     )
 
     return photosWithUserDetails
+}
+
+export const updateLike = async (
+    userId: string,
+    docId: string,
+    toggleLike: boolean | undefined
+) => {
+    const loggedUserRef = doc(db, "photos", docId)
+    await updateDoc(loggedUserRef, {
+        likes: toggleLike ? arrayUnion(userId) : arrayRemove(userId),
+    })
 }
