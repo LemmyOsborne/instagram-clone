@@ -11,7 +11,7 @@ export interface IUser {
 
 export interface IComment {
     comment: string
-    displayName: string
+    displayName: string | undefined
 }
 
 export interface IPhoto {

@@ -1,8 +1,7 @@
 import { IPhoto } from "interfaces/interfaces"
-import React, { FormEvent, useEffect, useState } from "react"
+import React from "react"
 import { Container, Image } from "./post.styles"
 import { useUser } from "hooks/use-user"
-import { updateComments, updateLike } from "services/firebase"
 import { Header } from "./header"
 import { Footer } from "./footer"
 import { Comment } from "./comment"
@@ -24,7 +23,7 @@ export const Post: React.FC<{ photo: IPhoto }> = ({
                 userLikedPhoto={userLikedPhoto}
                 username={username}
             >
-                <Comment comments={comments} docId={docId} username={username} />
+                <Comment comments={comments} docId={docId} username={user.username} />
             </Footer>
         </Container>
     ) : null
