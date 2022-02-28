@@ -95,3 +95,10 @@ export const updateLike = async (
         likes: toggleLike ? arrayUnion(userId) : arrayRemove(userId),
     })
 }
+
+export const updateComments = async (displayName: string, comment: string, docId: string) => {
+    const loggedUserRef = doc(db, "photos", docId)
+    await updateDoc(loggedUserRef, {
+        comments: arrayUnion({ comment, displayName }),
+    })
+}

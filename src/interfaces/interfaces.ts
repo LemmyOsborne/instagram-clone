@@ -9,14 +9,14 @@ export interface IUser {
     docId: string
 }
 
-export interface Comments {
+export interface IComment {
     comment: string
     displayName: string
 }
 
 export interface IPhoto {
     caption: string
-    comments: Comments[]
+    comments: IComment[]
     dateCreated: number
     imageSrc: string
     likes: string[]

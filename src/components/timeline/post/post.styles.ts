@@ -9,7 +9,7 @@ export const Container = styled.article`
     background-color: #fff;
 `
 
-export const Header = styled.header`
+export const HeaderContainer = styled.header`
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -35,7 +35,7 @@ export const Image = styled.img`
     height: 100%;
 `
 
-export const Bottom = styled.section`
+export const FooterContainer = styled.section`
     display: flex;
     flex-direction: column;
     padding: 15px 15px 0;
@@ -89,7 +89,7 @@ export const CommentSection = styled.section<{ showComments: boolean }>`
     display: ${({ showComments }) => (showComments ? "auto" : "none")};
 `
 
-export const Comment = styled.div`
+export const CommentItem = styled.div`
     display: flex;
     margin-bottom: 5px;
 `
