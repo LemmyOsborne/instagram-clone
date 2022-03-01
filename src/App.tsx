@@ -1,5 +1,6 @@
 import { FirebaseAuthContext } from "context/firebase"
 import { RequireAuth, WithRedirectAuthUser } from "helpers/routes"
+import { NotFound } from "pages/not-found"
 import React, { lazy, Suspense, useContext } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import * as ROUTES from "./constants/routes"
@@ -7,10 +8,10 @@ import * as ROUTES from "./constants/routes"
 const Login = lazy(() => import("pages/login"))
 const Signup = lazy(() => import("pages/signup"))
 const Dashboard = lazy(() => import("pages/dashboard"))
+const Profile = lazy(() => import("pages/profile"))
 
 const App = () => {
     const user = useContext(FirebaseAuthContext)
-    console.log("user: ", user)
 
     return (
         <Router>
@@ -40,6 +41,15 @@ const App = () => {
                             </RequireAuth>
                         }
                     />
+                    <Route
+                        path={ROUTES.PROFILE}
+                        element={
+                            <RequireAuth user={user}>
+                                <Profile />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </Suspense>
         </Router>
