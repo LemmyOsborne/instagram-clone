@@ -1,5 +1,6 @@
 import { IPhoto } from "interfaces/interfaces"
 import React, { useState } from "react"
+import { Popup } from "./popup/popup"
 import {
     PhotoItem,
     PhotosContainer,
@@ -10,22 +11,31 @@ import {
 } from "./profile.styles"
 
 export const Photos: React.FC<{ photosCollection: IPhoto[] }> = ({ photosCollection }) => {
+    const [popup, setPopup] = useState<IPhoto | null>({} as IPhoto)
+
+    console.log("popup: ", popup)
     return (
         <PhotosContainer>
             {photosCollection.map((photo) => (
-                <PhotoItem key={photo.docId}>
-                    <Photo src={photo.imageSrc} alt={photo.caption} />
-                    <PhotoOverlay>
-                        <LikeStat>
-                            <img src="/images/overlay-like.svg" />
-                            <span>{photo.likes.length} likes</span>
-                        </LikeStat>
-                        <CommentStat>
-                            <img src="/images/comment-overlay.svg" />
-                            <span>{photo.comments.length} comments</span>
-                        </CommentStat>
-                    </PhotoOverlay>
-                </PhotoItem>
+                <>
+                    <PhotoItem
+                        key={photo.docId}
+                        onClick={() => setPopup(photo === popup ? null : photo)}
+                    >
+                        <Photo src={photo.imageSrc} alt={photo.caption} />
+                        <PhotoOverlay>
+                            <LikeStat>
+                                <img src="/images/overlay-like.svg" />
+                                <span>{photo.likes.length} likes</span>
+                            </LikeStat>
+                            <CommentStat>
+                                <img src="/images/comment-overlay.svg" />
+                                <span>{photo.comments.length} comments</span>
+                            </CommentStat>
+                        </PhotoOverlay>
+                    </PhotoItem>
+                    <>{popup === photo && <Popup photo={photo} setPopup={setPopup} />}</>
+                </>
             ))}
         </PhotosContainer>
     )

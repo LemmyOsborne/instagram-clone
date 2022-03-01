@@ -30,7 +30,7 @@ const Profile = () => {
     }, [username])
 
     return (
-        <>
+        <div>
             <Header />
             {error ? (
                 <Error>
@@ -43,7 +43,7 @@ const Profile = () => {
             ) : (
                 user && <UserProfile user={user} />
             )}
-        </>
+        </div>
     )
 }
 

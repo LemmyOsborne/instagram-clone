@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const Container = styled.div`
     margin: 6rem auto 30px;
     max-width: 975px;
+    position: relative;
 `
 
 export const HeaderContainer = styled.header`
@@ -83,9 +84,9 @@ export const PhotosContainer = styled.section`
 export const PhotoOverlay = styled.div`
     width: 100%;
     height: 100%;
-    background-color: rgba(30, 30, 30, 0.6);
     position: absolute;
     display: none;
+    user-select: none;
 `
 
 export const PhotoItem = styled.div`
@@ -120,7 +121,9 @@ export const LikeStat = styled.div`
     }
 `
 
-export const CommentStat = styled(LikeStat)``
+export const CommentStat = styled(LikeStat)`
+    margin-right: 0;
+`
 
 export const Photo = styled.img`
     width: 100%;

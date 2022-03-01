@@ -18,7 +18,7 @@ export const UserProfile: React.FC<{ user: IUser }> = ({
             .catch((error) => {
                 console.log(error.message)
             })
-    }, [])
+    }, [username])
 
     return username && photosCollection ? (
         <Container>

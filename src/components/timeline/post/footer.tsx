@@ -14,7 +14,7 @@ interface IFooter {
     userLikedPhoto: boolean | undefined
     totalLikes: number
     username: string | undefined
-    caption: string
+    caption?: string
     docId: string
     userId: string
 }
@@ -62,12 +62,14 @@ export const Footer: React.FC<IFooter> = ({
                 </ActionButton>
             </Actions>
             <LikesQuantity>{likesQuantity} likes</LikesQuantity>
-            <Caption>
-                <Link to={`/p/${username}`}>
-                    <Username>{username}</Username>
-                </Link>
-                <p>{caption}</p>
-            </Caption>
+            {caption && (
+                <Caption>
+                    <Link to={`/p/${username}`}>
+                        <Username>{username}</Username>
+                    </Link>
+                    <p>{caption}</p>
+                </Caption>
+            )}
             {children}
         </FooterContainer>
     )
