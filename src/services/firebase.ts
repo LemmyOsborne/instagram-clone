@@ -102,3 +102,24 @@ export const updateComments = async (displayName: string, comment: string, docId
         comments: arrayUnion({ comment, displayName }),
     })
 }
+
+export const getUserByUsername = async (username: string | undefined) => {
+    const q = query(collection(db, "users"), where("username", "==", username))
+    const querySnapshot = await getDocs(q)
+    const LoggedUser = querySnapshot.docs.map((doc) => ({
+        ...(doc.data() as IUser),
+        docId: doc.id,
+    }))
+
+    return LoggedUser[0]
+}
+
+export const getPhotosByUserId = async (userId: string) => {
+    const q = query(collection(db, "photos"), where("userId", "==", userId))
+    const querySnapshot = await getDocs(q)
+
+    return querySnapshot.docs.map((doc) => ({
+        ...(doc.data() as IPhoto),
+        docId: doc.id,
+    }))
+}
