@@ -14,14 +14,14 @@ const Profile = () => {
     useEffect(() => {
         const CheckIsUserExists = async () => {
             const user = await getUserByUsername(username)
-            if (user) {
+            if (user?.userId) {
                 setUser(user)
             } else {
                 setError(true)
             }
         }
         CheckIsUserExists()
-    }, [username])
+    }, [username, error])
 
     useEffect(() => {
         if (username) {
@@ -29,7 +29,7 @@ const Profile = () => {
         }
     }, [username])
 
-    return user ? (
+    return (
         <>
             <Header />
             {error ? (
@@ -41,18 +41,34 @@ const Profile = () => {
                     </ErrorText>
                 </Error>
             ) : (
-                <UserProfile user={user} />
+                user && <UserProfile user={user} />
             )}
         </>
-    ) : (
-        <p>Loading...</p>
     )
 }
 
-const Error = styled.div``
+const Error = styled.div`
+    margin-top: 6rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
 
-const ErrorTitle = styled.h1``
+const ErrorTitle = styled.h1`
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 3rem;
+`
 
-const ErrorText = styled.p``
+const ErrorText = styled.p`
+    font-size: 16px;
+
+    a {
+        color: #00376b;
+    }
+`
 
 export default Profile

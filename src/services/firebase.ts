@@ -18,15 +18,15 @@ export const doesUsernameExist = async (username: string) => {
     return querySnapshot.docs.length > 0
 }
 
-export const getUserById = async (userId: string | undefined) => {
+export const getUserById = async (userId: string) => {
     const q = query(collection(db, "users"), where("userId", "==", userId))
     const querySnapshot = await getDocs(q)
-    const LoggedUser = querySnapshot.docs.map((doc) => ({
+    const loggedUser = querySnapshot.docs.map((doc) => ({
         ...(doc.data() as IUser),
         docId: doc.id,
     }))
 
-    return LoggedUser
+    return loggedUser
 }
 
 export const getSuggestedProfiles = async (docId: string, following: string[]) => {
@@ -40,22 +40,34 @@ export const getSuggestedProfiles = async (docId: string, following: string[]) =
         .filter((profile) => !following.includes(profile.userId))
 }
 
-export const updateLoggedUserFollowing = async (loggedUserDocId: string, profileId: string) => {
+export const updateLoggedUserFollowing = async (
+    loggedUserDocId: string,
+    profileId: string,
+    isFollowing: boolean
+) => {
     const loggedUserRef = doc(db, "users", loggedUserDocId)
-    const result = await updateDoc(loggedUserRef, {
-        following: arrayUnion(profileId),
-    })
-
-    return result
+    !isFollowing
+        ? await updateDoc(loggedUserRef, {
+              following: arrayUnion(profileId),
+          }).then(() => console.log("add to following"))
+        : await updateDoc(loggedUserRef, {
+              following: arrayRemove(profileId),
+          }).then(() => console.log("remove from following"))
 }
 
-export const updateFollowedUserFollowing = async (loggedUserId: string, profileDocId: string) => {
+export const updateFollowedUserFollowing = async (
+    loggedUserId: string,
+    profileDocId: string,
+    isFollowers: boolean
+) => {
     const loggedUserRef = doc(db, "users", profileDocId)
-    const result = await updateDoc(loggedUserRef, {
-        followers: arrayUnion(loggedUserId),
-    })
-
-    return result
+    !isFollowers
+        ? await updateDoc(loggedUserRef, {
+              followers: arrayUnion(loggedUserId),
+          }).then(() => console.log("add to followers"))
+        : await updateDoc(loggedUserRef, {
+              followers: arrayRemove(loggedUserId),
+          }).then(() => console.log("remove from followers"))
 }
 
 export const getPhotos = async (loggedUserId: string, following: string[]) => {

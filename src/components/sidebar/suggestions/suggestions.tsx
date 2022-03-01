@@ -34,15 +34,17 @@ export const Suggestions: React.FC<ISuggestions> = ({
                 <Title>Suggestions for you</Title>
                 <SmallText>See All</SmallText>
             </TitleWrapper>
-            {profiles?.map(({ fullName, username, docId, userId }) => (
+            {profiles?.map(({ fullName, username, docId, userId, followers }) => (
                 <SuggestedProfiles
                     key={docId}
                     username={username}
                     fullName={fullName}
                     loggedUserDocId={loggedUserDocId}
                     loggedUserId={loggedUserId}
+                    loggedUserFollowing={following}
                     profileDocId={docId}
                     profileId={userId}
+                    profileFollowers={followers}
                 />
             ))}
         </>

@@ -15,6 +15,8 @@ interface ISuggestedProfiles {
     loggedUserId: string
     profileDocId: string
     profileId: string
+    profileFollowers: string[]
+    loggedUserFollowing: string[]
 }
 
 export const SuggestedProfiles: React.FC<ISuggestedProfiles> = ({
@@ -24,16 +26,20 @@ export const SuggestedProfiles: React.FC<ISuggestedProfiles> = ({
     username,
     profileDocId,
     profileId,
+    profileFollowers,
+    loggedUserFollowing,
 }) => {
     const { setActiveUser } = useUser()
-    const [isFollowing, setIsFollowing] = useState(false)
+    const [isFollowing, setIsFollowing] = useState<boolean>(loggedUserFollowing.includes(profileId))
+    const [isFollowers, setIsFollowers] = useState<boolean>(profileFollowers.includes(loggedUserId))
 
     const handleFollowing = async () => {
-        await updateLoggedUserFollowing(loggedUserDocId, profileId)
-        await updateFollowedUserFollowing(loggedUserId, profileDocId)
+        await updateLoggedUserFollowing(loggedUserDocId, profileId, isFollowing)
+        await updateFollowedUserFollowing(loggedUserId, profileDocId, isFollowers)
         const [user] = await getUserById(loggedUserDocId)
         setActiveUser(user)
-        setIsFollowing(true)
+        setIsFollowing((isFollowing) => !isFollowing)
+        setIsFollowers((isFollowers) => !isFollowers)
     }
 
     return !isFollowing ? (
