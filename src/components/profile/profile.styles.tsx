@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const HeaderContainer = styled.header`
     display: flex;
-    width: 935px;
+    max-width: 935px;
     padding: 0 50px;
     margin-bottom: 3rem;
     justify-content: center;
@@ -15,8 +15,14 @@ export const HeaderContainer = styled.header`
 
 export const Avatar = styled.img`
     border-radius: 50%;
-    width: 150px;
+    max-width: 150px;
     margin-right: 6rem;
+
+    @media (max-width: 1000px) {
+        margin-right: 2.5rem;
+        width: 100px;
+        height: 100px;
+    }
 `
 
 export const ProfileInfo = styled.section`
@@ -63,15 +69,61 @@ export const FullName = styled.h2`
 
 export const PhotosContainer = styled.section`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    row-gap: 30px;
+    grid-template-columns: repeat(3, minmax(100px, 290px));
+    gap: 20px;
     max-width: 100%;
     border-top: 1px solid lightgray;
     padding: 3rem 0 20px;
+    justify-content: center;
+
+    @media (max-width: 1000px) {
+        gap: 5px;
+    }
+`
+export const PhotoOverlay = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30, 30, 30, 0.6);
+    position: absolute;
+    display: none;
 `
 
+export const PhotoItem = styled.div`
+    max-width: 293px;
+    max-height: 293px;
+    position: relative;
+    cursor: pointer;
+
+    &:hover ${PhotoOverlay}, &:focus ${PhotoOverlay} {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+`
+
+export const LikeStat = styled.div`
+    color: #fff;
+    font-weight: 600;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+`
+
+export const CommentStat = styled(LikeStat)``
+
 export const Photo = styled.img`
-    width: 293px;
-    height: 293px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 `

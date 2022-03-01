@@ -37,8 +37,6 @@ export const Header: React.FC<IHeader> = ({
     const [isFollowing, setIsFollowing] = useState(initialIsFollowing)
     const [isFollowers, setIsFollowers] = useState(initialIsFollowers)
     const [followersQuantity, setFollowersQuantity] = useState(followers.length)
-    console.log("isFollowing: ", isFollowing)
-    console.log("isFollowers: ", isFollowers)
 
     const toggleFollowing = async () => {
         await updateLoggedUserFollowing(user.docId, userId, isFollowing)
