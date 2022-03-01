@@ -13,7 +13,6 @@ import {
 export const Photos: React.FC<{ photosCollection: IPhoto[] }> = ({ photosCollection }) => {
     const [popup, setPopup] = useState<IPhoto | null>({} as IPhoto)
 
-    console.log("popup: ", popup)
     return (
         <PhotosContainer>
             {photosCollection.map((photo) => (
@@ -26,11 +25,15 @@ export const Photos: React.FC<{ photosCollection: IPhoto[] }> = ({ photosCollect
                         <PhotoOverlay>
                             <LikeStat>
                                 <img src="/images/overlay-like.svg" />
-                                <span>{photo.likes.length} likes</span>
+                                <span>
+                                    {photo.likes.length} <p>likes</p>
+                                </span>
                             </LikeStat>
                             <CommentStat>
                                 <img src="/images/comment-overlay.svg" />
-                                <span>{photo.comments.length} comments</span>
+                                <span>
+                                    {photo.comments.length} <p>comments</p>
+                                </span>
                             </CommentStat>
                         </PhotoOverlay>
                     </PhotoItem>

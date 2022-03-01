@@ -16,9 +16,11 @@ import {
     Posted,
     Text,
     CloseButton,
+    FooterSection,
 } from "./popup.styles"
 import { formatDistance } from "date-fns"
 import { Footer } from "components/timeline/post/footer"
+import { Comment as CommentComponent } from "components/timeline/post/comment"
 
 interface IPopup {
     photo: IPhoto
@@ -67,13 +69,22 @@ export const Popup: React.FC<IPopup> = ({
                             </Comment>
                         ))}
                     </CommentsSection>
-                    <Footer
-                        totalLikes={likes.length}
-                        userLikedPhoto={userLikedPhoto}
-                        username={username}
-                        docId={docId}
-                        userId={userId}
-                    />
+                    <FooterSection>
+                        <Footer
+                            totalLikes={likes.length}
+                            userLikedPhoto={userLikedPhoto}
+                            username={username}
+                            docId={docId}
+                            userId={userId}
+                        />
+                        <CommentComponent
+                            comments={comments}
+                            dateCreated={dateCreated}
+                            docId={docId}
+                            username={username}
+                            popup
+                        />
+                    </FooterSection>
                 </PostInfo>
             </Inner>
         </Overlay>,

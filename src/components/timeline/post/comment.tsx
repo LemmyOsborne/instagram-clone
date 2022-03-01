@@ -1,4 +1,4 @@
-import { formatDistance } from "date-fns"
+import { format, formatDistance } from "date-fns"
 import { IComment } from "interfaces/interfaces"
 import React, { FormEvent, useState } from "react"
 import { Link } from "react-router-dom"
@@ -19,6 +19,7 @@ interface ICommentComponent {
     docId: string
     comments: IComment[]
     dateCreated: number
+    popup?: boolean
 }
 
 export const Comment: React.FC<ICommentComponent> = ({
@@ -26,6 +27,7 @@ export const Comment: React.FC<ICommentComponent> = ({
     docId,
     username,
     dateCreated,
+    popup,
 }) => {
     const [showComments, setShowComments] = useState(false)
     const [comment, setComment] = useState("")
@@ -41,7 +43,7 @@ export const Comment: React.FC<ICommentComponent> = ({
         }
     }
 
-    return (
+    return !popup ? (
         <>
             <ToggleComments onClick={() => setShowComments(!showComments)}>
                 View all {comments.length} comments
@@ -57,6 +59,20 @@ export const Comment: React.FC<ICommentComponent> = ({
                     </CommentItem>
                 ))}
             </CommentSection>
+            <Form onSubmit={handleComments}>
+                <Input
+                    value={comment}
+                    onChange={({ target }) => setComment(target.value)}
+                    placeholder="Add a comment..."
+                />
+                <Button disabled={isDisabled} type="submit">
+                    Post
+                </Button>
+            </Form>
+        </>
+    ) : (
+        <>
+            <Posted style={{ marginLeft: "15px" }}>{format(dateCreated, "MMMM dd")}</Posted>
             <Form onSubmit={handleComments}>
                 <Input
                     value={comment}

@@ -114,10 +114,24 @@ export const LikeStat = styled.div`
     display: flex;
     align-items: center;
 
+    span {
+        display: flex;
+    }
+
+    p {
+        margin-left: 5px;
+    }
+
     img {
         width: 20px;
         height: 20px;
         margin-right: 5px;
+    }
+
+    @media (max-width: 600px) {
+        p {
+            display: none;
+        }
     }
 `
 

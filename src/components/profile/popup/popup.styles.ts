@@ -15,15 +15,18 @@ export const Overlay = styled.div`
 `
 
 export const Inner = styled.div`
-    width: 1100px;
+    max-width: 1100px;
+    width: 90%;
     height: 90%;
     display: flex;
-    border-radius: 4px;
     z-index: 999;
 
-    img {
+    & > img {
         max-width: 600px;
         max-height: 100%;
+        width: 50%;
+        height: auto;
+        object-fit: cover;
     }
 `
 
@@ -31,6 +34,8 @@ export const PostInfo = styled.div`
     background-color: #fff;
     height: 100%;
     width: 100%;
+    border-radius: 0 4px 4px 0;
+    position: relative;
 `
 
 export const Header = styled.header`
@@ -88,10 +93,17 @@ export const Text = styled.div`
 export const CloseButton = styled.button`
     background: none;
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 0;
+    right: 0;
 
     img:hover {
         filter: brightness(0.8);
     }
+`
+
+export const FooterSection = styled.footer`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
 `

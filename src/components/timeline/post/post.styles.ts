@@ -122,6 +122,7 @@ export const Button = styled.button`
     background: none;
     font-weight: 600;
     padding: 0;
+    margin-right: 10px;
 
     :disabled {
         pointer-events: none;
