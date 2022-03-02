@@ -6,7 +6,6 @@ import {
     Image,
     Text,
     Wrapper,
-    Skeleton,
     SkeletonAvatar,
     SkeletonText,
 } from "./user.styles"

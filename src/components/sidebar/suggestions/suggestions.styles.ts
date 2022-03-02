@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 export const Container = styled.div`
     display: grid;
@@ -45,7 +45,7 @@ export const Button = styled.button`
     padding: 0;
 `
 
-export const Title = styled.p`
+export const Title = styled.div`
     color: #939393;
     font-size: 14px;
     font-weight: 600;
@@ -58,9 +58,40 @@ export const TitleWrapper = styled.div`
     margin: 25px 0 15px;
 `
 
-export const SmallText = styled.p`
+export const SmallText = styled.div`
     font-size: 12px;
     cursor: pointer;
     justify-self: end;
     font-weight: 600;
+`
+
+const skeleton = keyframes`
+    0% {
+    background-color: #c7d2d8;
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+`
+
+export const SkeletonAvatar = styled.div`
+    animation: ${skeleton} 1s linear infinite alternate;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+`
+
+export const SkeletonText = styled.div`
+    animation: ${skeleton} 1s linear infinite alternate;
+    min-width: 40px;
+    width: 100%;
+    height: 15px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+
+    &:last-child {
+        width: 80%;
+    }
 `
