@@ -1,6 +1,15 @@
 import React, { memo } from "react"
 import { Link } from "react-router-dom"
-import { Button, Container, Image, Text, Wrapper } from "./user.styles"
+import {
+    Button,
+    Container,
+    Image,
+    Text,
+    Wrapper,
+    Skeleton,
+    SkeletonAvatar,
+    SkeletonText,
+} from "./user.styles"
 
 interface IUserComponent {
     username?: string
@@ -8,7 +17,7 @@ interface IUserComponent {
 }
 
 const User: React.FC<IUserComponent> = ({ fullName, username }) => {
-    return (
+    return username ? (
         <Container>
             <Wrapper>
                 <Link to={`/p/${username}`}>
@@ -20,6 +29,16 @@ const User: React.FC<IUserComponent> = ({ fullName, username }) => {
                 </Link>
             </Wrapper>
             <Button>Switch</Button>
+        </Container>
+    ) : (
+        <Container>
+            <Wrapper>
+                <SkeletonAvatar />
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <SkeletonText />
+                    <SkeletonText />
+                </div>
+            </Wrapper>
         </Container>
     )
 }

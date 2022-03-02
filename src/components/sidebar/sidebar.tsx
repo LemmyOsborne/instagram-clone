@@ -19,9 +19,7 @@ export const Sidebar = () => {
                 following={user.following}
             />
         </Container>
-    ) : (
-        <div>Loading...</div>
-    )
+    ) : null
 }
 
 const Container = styled.nav<{ width: number }>`

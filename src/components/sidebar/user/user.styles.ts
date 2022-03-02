@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 export const Container = styled.div`
     display: grid;
@@ -42,4 +42,34 @@ export const Button = styled.div`
     cursor: pointer;
     background: none;
     border: none;
+`
+
+const skeleton = keyframes`
+    0% {
+    background-color: #c7d2d8;
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+`
+
+export const SkeletonAvatar = styled.div`
+    animation: ${skeleton} 1s linear infinite alternate;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+`
+
+export const SkeletonText = styled.div`
+    animation: ${skeleton} 1s linear infinite alternate;
+    width: 150px;
+    height: 15px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+
+    &:last-child {
+        width: 80%;
+    }
 `
