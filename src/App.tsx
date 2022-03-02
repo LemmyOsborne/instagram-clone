@@ -3,6 +3,7 @@ import { RequireAuth, WithRedirectAuthUser } from "helpers/routes"
 import { NotFound } from "pages/not-found"
 import React, { lazy, Suspense, useContext } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import styled from "styled-components"
 import * as ROUTES from "./constants/routes"
 
 const Login = lazy(() => import("pages/login"))
@@ -15,7 +16,13 @@ const App = () => {
 
     return (
         <Router>
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense
+                fallback={
+                    <Loading>
+                        <img src="/images/icons/instagram-icon.png" />
+                    </Loading>
+                }
+            >
                 <Routes>
                     <Route
                         path={ROUTES.LOGIN}
@@ -55,5 +62,14 @@ const App = () => {
         </Router>
     )
 }
+
+const Loading = styled.div`
+    background: #f8f4f4f0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
 
 export default App
