@@ -1,3 +1,4 @@
+import { useUser } from "hooks/use-user"
 import { IPhoto, IUser } from "interfaces/interfaces"
 import React, { useEffect, useState } from "react"
 import { getPhotosByUserId } from "services/firebase"
@@ -9,6 +10,7 @@ export const UserProfile: React.FC<{ user: IUser }> = ({
     user: { followers, following, fullName, username, userId, docId },
 }) => {
     const [photosCollection, setPhotosCollection] = useState<IPhoto[]>()
+    const { user } = useUser()
 
     useEffect(() => {
         getPhotosByUserId(userId)
@@ -31,7 +33,7 @@ export const UserProfile: React.FC<{ user: IUser }> = ({
                 userId={userId}
                 docId={docId}
             />
-            {photosCollection.length === 0 ? (
+            {photosCollection.length === 0 && username === user.username ? (
                 <DefaultProfile>
                     <img src="/images/misc/collage.jpg" />
                     <Feature>
@@ -43,11 +45,17 @@ export const UserProfile: React.FC<{ user: IUser }> = ({
                         </div>
                     </Feature>
                 </DefaultProfile>
+            ) : photosCollection.length === 0 ? (
+                <DefaultProfile style={{ flexDirection: "column", alignItems: "center" }}>
+                    <img
+                        style={{ width: "30px", height: "30px", margin: "40px" }}
+                        src="/images/icons/camera-icon.png"
+                    />
+                    <h1 style={{ fontWeight: "300" }}>No post yet</h1>
+                </DefaultProfile>
             ) : (
                 <Photos photosCollection={photosCollection} />
             )}
         </Container>
-    ) : (
-        <p style={{ marginTop: "6rem" }}>Loading...</p>
-    )
+    ) : null
 }
