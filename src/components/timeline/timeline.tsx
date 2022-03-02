@@ -2,7 +2,7 @@ import { useUser } from "hooks/use-user"
 import { IPhoto } from "interfaces/interfaces"
 import React, { useEffect, useState } from "react"
 import { getPhotos } from "services/firebase"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { Post } from "./post/post"
 
 export const Timeline = () => {
@@ -27,10 +27,62 @@ export const Timeline = () => {
                 <Post photo={photo} key={photo.docId} />
             ))}
         </Container>
-    ) : null
+    ) : (
+        <Container>
+            {Array(9)
+                .fill("")
+                .map((_, index) => (
+                    <React.Fragment key={index}>
+                        <SkeletonHeader>
+                            <SkeletonAvatar />
+                            <SkeletonText />
+                        </SkeletonHeader>
+                        <Skeleton />
+                    </React.Fragment>
+                ))}
+        </Container>
+    )
 }
 
 const Container = styled.section`
     max-width: 614px;
     width: 100%;
+    max-height: 600px;
+`
+
+const skeleton = keyframes`
+    0% {
+    background-color: #c7d2d8;
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+`
+
+const Skeleton = styled.div`
+    animation: ${skeleton} 1s linear infinite alternate;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    margin-bottom: 3rem;
+`
+const SkeletonAvatar = styled.div`
+    animation: ${skeleton} 1s linear infinite alternate;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px 20px 20px;
+`
+
+const SkeletonText = styled.div`
+    animation: ${skeleton} 1s linear infinite alternate;
+    width: 50px;
+    height: 15px;
+    border-radius: 4px;
+`
+
+const SkeletonHeader = styled.div`
+    display: flex;
+    align-items: center;
 `
