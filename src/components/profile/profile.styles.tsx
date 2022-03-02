@@ -161,9 +161,20 @@ export const DefaultProfile = styled.div`
     width: 100%;
 
     img {
-        max-width: 380px;
-        max-height: 380px;
+        width: 380px;
+        height: 380px;
         border-radius: 4px 0 0 4px;
+    }
+
+    @media (max-width: 800px) {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 `
 
@@ -189,11 +200,16 @@ export const Feature = styled.div`
 
     img {
         height: 40px;
+        width: 135px;
         cursor: pointer;
         display: inline;
 
         &:first-of-type {
             margin-right: 10px;
         }
+    }
+
+    @media (max-width: 800px) {
+        margin-bottom: 2.5rem;
     }
 `
