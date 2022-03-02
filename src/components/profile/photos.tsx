@@ -16,11 +16,8 @@ export const Photos: React.FC<{ photosCollection: IPhoto[] }> = ({ photosCollect
     return (
         <PhotosContainer>
             {photosCollection.map((photo) => (
-                <>
-                    <PhotoItem
-                        key={photo.docId}
-                        onClick={() => setPopup(photo === popup ? null : photo)}
-                    >
+                <React.Fragment key={photo.docId}>
+                    <PhotoItem onClick={() => setPopup(photo === popup ? null : photo)}>
                         <Photo src={photo.imageSrc} alt={photo.caption} />
                         <PhotoOverlay>
                             <LikeStat>
@@ -38,7 +35,7 @@ export const Photos: React.FC<{ photosCollection: IPhoto[] }> = ({ photosCollect
                         </PhotoOverlay>
                     </PhotoItem>
                     <>{popup === photo && <Popup photo={photo} setPopup={setPopup} />}</>
-                </>
+                </React.Fragment>
             ))}
         </PhotosContainer>
     )

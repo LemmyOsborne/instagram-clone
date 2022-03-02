@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { db } from "firebase/firebase"
 import {
     collection,
@@ -70,7 +71,7 @@ export const updateFollowedUserFollowing = async (
           }).then(() => console.log("remove from followers"))
 }
 
-export const getPhotos = async (loggedUserId: string, following: string[]) => {
+export const getPhotos = async (following: string[]) => {
     const q = query(collection(db, "photos"), where("userId", "in", following))
     const querySnapshot = await getDocs(q)
     const userFollowedPhotos = querySnapshot.docs.map((doc) => ({
@@ -80,17 +81,11 @@ export const getPhotos = async (loggedUserId: string, following: string[]) => {
 
     const photosWithUserDetails = await Promise.all(
         userFollowedPhotos.map(async (photo) => {
-            let userLikedPhoto = false
-
-            if (photo.likes.includes(loggedUserId)) {
-                userLikedPhoto = true
-            }
-
             const user = await getUserById(photo.userId)
 
             const { username } = user[0]
 
-            return { username, userLikedPhoto, ...photo }
+            return { username, ...photo }
         })
     )
 
@@ -105,6 +100,7 @@ export const updateLike = async (
     const loggedUserRef = doc(db, "photos", docId)
     await updateDoc(loggedUserRef, {
         likes: toggleLike ? arrayUnion(userId) : arrayRemove(userId),
+        userLikedPhoto: toggleLike ? true : false,
     })
 }
 

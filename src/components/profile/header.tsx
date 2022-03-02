@@ -9,6 +9,7 @@ import {
     Button,
     Statistics,
     FullName,
+    EditButton,
 } from "./profile.styles"
 
 interface IHeader {
@@ -57,14 +58,21 @@ export const Header: React.FC<IHeader> = ({
         <HeaderContainer>
             <Avatar src={`/images/avatars/${username}.jpg`} />
             <ProfileInfo>
-                <Top>
-                    <p>{username}</p>
-                    {isFollowing ? (
-                        <Button onClick={toggleFollowing}>Unfollow</Button>
-                    ) : (
-                        <Button onClick={toggleFollowing}>Follow</Button>
-                    )}
-                </Top>
+                {userId !== user.userId ? (
+                    <Top>
+                        <p>{username}</p>
+                        {isFollowing ? (
+                            <Button onClick={toggleFollowing}>Unfollow</Button>
+                        ) : (
+                            <Button onClick={toggleFollowing}>Follow</Button>
+                        )}
+                    </Top>
+                ) : (
+                    <Top>
+                        <p>{username}</p>
+                        <EditButton>Edit Profile</EditButton>
+                    </Top>
+                )}
                 <Statistics>
                     <li>
                         <span>{photosQuantity}</span> posts

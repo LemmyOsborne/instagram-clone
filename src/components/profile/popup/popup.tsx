@@ -21,6 +21,7 @@ import {
 import { formatDistance } from "date-fns"
 import { Footer } from "components/timeline/post/footer"
 import { Comment as CommentComponent } from "components/timeline/post/comment"
+import { useUser } from "hooks/use-user"
 
 interface IPopup {
     photo: IPhoto
@@ -28,10 +29,11 @@ interface IPopup {
 }
 
 export const Popup: React.FC<IPopup> = ({
-    photo: { caption, comments, dateCreated, likes, userLikedPhoto, imageSrc, docId, userId },
+    photo: { caption, comments, dateCreated, likes, userLikedPhoto, imageSrc, docId },
     setPopup,
 }) => {
     const { username } = useParams()
+    const { user } = useUser()
     return ReactDOM.createPortal(
         <Overlay>
             <CloseButton onClick={() => setPopup(null)}>
@@ -75,7 +77,7 @@ export const Popup: React.FC<IPopup> = ({
                             userLikedPhoto={userLikedPhoto}
                             username={username}
                             docId={docId}
-                            userId={userId}
+                            userId={user.userId}
                         />
                         <CommentComponent
                             comments={comments}

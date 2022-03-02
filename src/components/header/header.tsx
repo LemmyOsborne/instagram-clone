@@ -49,8 +49,10 @@ export const Header = () => {
                             {isOpen && (
                                 <DropdownMenu>
                                     <div>
-                                        <img src="/images/profile.svg" alt="Profile" />
-                                        Profile
+                                        <Link to={`/p/${user.displayName}`}>
+                                            <img src="/images/profile.svg" alt="Profile" />
+                                            Profile
+                                        </Link>
                                     </div>
                                     <div>
                                         <img src="/images/saved.svg" alt="Saved" />

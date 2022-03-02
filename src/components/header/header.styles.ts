@@ -63,6 +63,8 @@ export const DropdownMenu = styled.div`
         width: 230px;
         transition: all 0.22s;
         cursor: pointer;
+        display: flex;
+        align-items: center;
 
         img {
             margin: 0 15px 0 0;

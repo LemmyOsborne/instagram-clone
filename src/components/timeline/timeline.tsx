@@ -12,7 +12,7 @@ export const Timeline = () => {
     useEffect(() => {
         if (user) {
             const getFollowedPhotos = async () => {
-                const followedPhotos = await getPhotos(user.userId, user.following)
+                const followedPhotos = await getPhotos(user.following)
                 if (user.following.length > 0) {
                     setPhotos(followedPhotos)
                 }

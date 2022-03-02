@@ -1,15 +1,15 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-    margin: 6rem auto 30px;
-    max-width: 975px;
+    margin: 5.5rem auto 30px;
+    max-width: 935px;
     position: relative;
 `
 
 export const HeaderContainer = styled.header`
     display: flex;
     max-width: 935px;
-    padding: 0 50px;
+    padding: 0 70px;
     margin-bottom: 3rem;
     justify-content: center;
 `
@@ -48,6 +48,15 @@ export const Button = styled.button`
     padding: 6px 25px;
 `
 
+export const EditButton = styled.button`
+    padding: 6px 10px;
+    background: transparent;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+`
+
 export const Statistics = styled.ul`
     display: flex;
     margin-bottom: 20px;
@@ -64,7 +73,7 @@ export const Statistics = styled.ul`
 `
 
 export const FullName = styled.h2`
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
 `
 
@@ -143,4 +152,48 @@ export const Photo = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
+`
+
+export const DefaultProfile = styled.div`
+    border-top: 1px solid lightgray;
+    padding: 3rem 0 20px;
+    display: flex;
+    width: 100%;
+
+    img {
+        max-width: 380px;
+        max-height: 380px;
+        border-radius: 4px 0 0 4px;
+    }
+`
+
+export const Feature = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    flex-grow: 1;
+    border-radius: 4px 0 0 4px;
+
+    span {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    img {
+        height: 40px;
+        cursor: pointer;
+        display: inline;
+
+        &:first-of-type {
+            margin-right: 10px;
+        }
+    }
 `
