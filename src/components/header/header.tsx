@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {
     Container,
@@ -14,10 +14,12 @@ import {
 import * as ROUTES from "constants/routes"
 import { getAuth, signOut } from "firebase/auth"
 import { FirebaseAuthContext } from "context/firebase"
+import { checkImage } from "helpers/check-image"
 
 export const Header = () => {
     const user = useContext(FirebaseAuthContext)
     const [isOpen, setIsOpen] = useState(false)
+    const [isImageExist, setIsImageExists] = useState(false)
     const navigate = useNavigate()
 
     const signOutHandler = () => {
@@ -30,6 +32,12 @@ export const Header = () => {
                 console.error(error)
             })
     }
+
+    useEffect(() => {
+        if (user) {
+            checkImage(`/images/avatars/${user.displayName}.jpg`, setIsImageExists)
+        }
+    }, [user])
 
     return (
         <Container>
@@ -44,7 +52,14 @@ export const Header = () => {
                         </Link>
                         <Dropdown>
                             <Avatar onClick={() => setIsOpen((isOpen) => !isOpen)}>
-                                <img src={`/images/avatars/${user.displayName}.jpg`} alt="User" />
+                                {isImageExist ? (
+                                    <img
+                                        src={`/images/avatars/${user.displayName}.jpg`}
+                                        alt="User"
+                                    />
+                                ) : (
+                                    <img src={"/images/avatars/default.png"} alt="User" />
+                                )}
                             </Avatar>
                             {isOpen && (
                                 <DropdownMenu>

@@ -1,4 +1,5 @@
-import React, { memo } from "react"
+import { checkImage } from "helpers/check-image"
+import React, { memo, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import {
     Button,
@@ -16,11 +17,19 @@ interface IUserComponent {
 }
 
 const User: React.FC<IUserComponent> = ({ fullName, username }) => {
+    const [isImageExist, setIsMageExist] = useState(false)
+    useEffect(() => {
+        checkImage(`/images/avatars/${username}.jpg`, setIsMageExist)
+    })
     return username ? (
         <Container>
             <Wrapper>
                 <Link to={`/p/${username}`}>
-                    <Image src={`/images/avatars/${username}.jpg`} />
+                    {isImageExist ? (
+                        <Image src={`/images/avatars/${username}.jpg`} />
+                    ) : (
+                        <Image src={"/images/avatars/default.png"} />
+                    )}
                 </Link>
                 <Link to={`/p/${username}`}>
                     <Text>{username}</Text>
