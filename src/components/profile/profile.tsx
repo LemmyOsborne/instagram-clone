@@ -1,3 +1,4 @@
+import { Footer } from "components"
 import { useUser } from "hooks/use-user"
 import { IPhoto, IUser } from "interfaces/interfaces"
 import React, { useEffect, useState } from "react"
@@ -56,6 +57,7 @@ export const UserProfile: React.FC<{ user: IUser }> = ({
             ) : (
                 <Photos photosCollection={photosCollection} />
             )}
+            <Footer />
         </Container>
     ) : null
 }

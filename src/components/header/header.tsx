@@ -48,12 +48,12 @@ export const Header = () => {
                             </Avatar>
                             {isOpen && (
                                 <DropdownMenu>
-                                    <div>
-                                        <Link to={`/p/${user.displayName}`}>
+                                    <Link to={`/p/${user.displayName}`}>
+                                        <div>
                                             <img src="/images/profile.svg" alt="Profile" />
                                             Profile
-                                        </Link>
-                                    </div>
+                                        </div>
+                                    </Link>
                                     <div>
                                         <img src="/images/saved.svg" alt="Saved" />
                                         Saved

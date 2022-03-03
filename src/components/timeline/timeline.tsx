@@ -22,11 +22,13 @@ export const Timeline = () => {
     }, [user])
 
     return photos ? (
-        <Container>
-            {photos.map((photo) => (
-                <Post photo={photo} key={photo.docId} />
-            ))}
-        </Container>
+        <>
+            <Container>
+                {photos.map((photo) => (
+                    <Post photo={photo} key={photo.docId} />
+                ))}
+            </Container>
+        </>
     ) : (
         <Container>
             {Array(9)
