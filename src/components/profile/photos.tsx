@@ -34,7 +34,7 @@ export const Photos: React.FC<{ photosCollection: IPhoto[] }> = ({ photosCollect
                             </CommentStat>
                         </PhotoOverlay>
                     </PhotoItem>
-                    <>{popup === photo && <Popup photo={photo} setPopup={setPopup} />}</>
+                    <>{popup === photo && <Popup photo={popup} setPopup={setPopup} />}</>
                 </React.Fragment>
             ))}
         </PhotosContainer>

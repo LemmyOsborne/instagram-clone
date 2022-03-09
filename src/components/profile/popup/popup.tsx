@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { IPhoto } from "interfaces/interfaces"
-import React from "react"
+import React, { useState } from "react"
 import ReactDOM from "react-dom"
 import { useParams } from "react-router-dom"
 import {
@@ -19,7 +19,7 @@ import {
     FooterSection,
 } from "./popup.styles"
 import { formatDistance } from "date-fns"
-import { Footer } from "components/timeline/post/footer"
+import { Footer } from "./footer"
 import { Comment as CommentComponent } from "components/timeline/post/comment"
 import { useUser } from "hooks/use-user"
 
@@ -32,8 +32,17 @@ export const Popup: React.FC<IPopup> = ({
     photo: { caption, comments, dateCreated, likes, userLikedPhoto, imageSrc, docId },
     setPopup,
 }) => {
+    const [toggleLike, setToggleLike] = useState(userLikedPhoto)
+    const [likesQuantity, setLikesQuantity] = useState(likes.length)
+
+    const handleLike = () => {
+        setToggleLike((toggleLike) => !toggleLike)
+        setLikesQuantity((totalLikes) => (toggleLike ? totalLikes - 1 : totalLikes + 1))
+    }
+
     const { username } = useParams()
     const { user } = useUser()
+
     return ReactDOM.createPortal(
         <Overlay>
             <CloseButton onClick={() => setPopup(null)}>
@@ -61,9 +70,15 @@ export const Popup: React.FC<IPopup> = ({
                         <Posted>{formatDistance(dateCreated, new Date())}</Posted>
                         {comments.map(({ comment, displayName }, index) => (
                             <Comment key={index}>
-                                <Avatar>
-                                    <img src={`/images/avatars/${displayName}.jpg`} />
-                                </Avatar>
+                                {displayName !== user.username ? (
+                                    <Avatar>
+                                        <img src={`/images/avatars/${displayName}.jpg`} />
+                                    </Avatar>
+                                ) : (
+                                    <Avatar>
+                                        <img src={"/images/avatars/default.png"} />
+                                    </Avatar>
+                                )}
                                 <Text>
                                     <Username>{displayName}</Username>
                                     <p>{comment}</p>
@@ -73,8 +88,10 @@ export const Popup: React.FC<IPopup> = ({
                     </CommentsSection>
                     <FooterSection>
                         <Footer
-                            totalLikes={likes.length}
-                            userLikedPhoto={userLikedPhoto}
+                            toggleLike={toggleLike}
+                            handleLike={handleLike}
+                            userLikedPhoto={toggleLike}
+                            totalLikes={likesQuantity}
                             username={username}
                             docId={docId}
                             userId={user.userId}
@@ -83,7 +100,7 @@ export const Popup: React.FC<IPopup> = ({
                             comments={comments}
                             dateCreated={dateCreated}
                             docId={docId}
-                            username={username}
+                            username={user.username}
                             popup
                         />
                     </FooterSection>

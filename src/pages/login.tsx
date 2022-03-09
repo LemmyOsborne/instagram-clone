@@ -35,11 +35,7 @@ const Login = () => {
     )
     return (
         <Wrapper>
-            <img
-                src="images/misc/iphone-with-profile.jpg"
-                alt="Iphone profile"
-                style={{ width: "454px", height: "618px" }}
-            />
+            <PhoneImage src="images/misc/iphone-with-profile.jpg" alt="Iphone profile" />
             <Form>
                 <Form.Wrapper>
                     <Form.Base onSubmit={handleSubmit}>
@@ -81,6 +77,15 @@ const Wrapper = styled.div`
     justify-content: center;
     width: 100vw;
     height: 100vh;
+`
+
+const PhoneImage = styled.img`
+    width: 454px;
+    height: 618px;
+
+    @media (max-width: 900px) {
+        display: none;
+    }
 `
 
 export default Login

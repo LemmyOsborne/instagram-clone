@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import { getPhotos } from "services/firebase"
 import styled, { keyframes } from "styled-components"
 import { Post } from "./post/post"
+import { Footer } from "components"
 
 export const Timeline = () => {
     const { user } = useUser()
@@ -21,7 +22,7 @@ export const Timeline = () => {
         }
     }, [user])
 
-    return photos ? (
+    return photos && user?.following?.length !== 0 ? (
         <>
             <Container>
                 {photos.map((photo) => (
@@ -29,6 +30,10 @@ export const Timeline = () => {
                 ))}
             </Container>
         </>
+    ) : user?.following?.length === 0 ? (
+        <Container>
+            <p>You not following anyone.</p>
+        </Container>
     ) : (
         <Container>
             {Array(9)

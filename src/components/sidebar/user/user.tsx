@@ -20,7 +20,7 @@ const User: React.FC<IUserComponent> = ({ fullName, username }) => {
     const [isImageExist, setIsMageExist] = useState(false)
     useEffect(() => {
         checkImage(`/images/avatars/${username}.jpg`, setIsMageExist)
-    })
+    }, [username])
     return username ? (
         <Container>
             <Wrapper>
