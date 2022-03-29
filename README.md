@@ -1,14 +1,17 @@
 # Instagram Clone
 
-Initiated using create-react-app -> Client-side rendered app featuring an online database, authentication, and a (currently) locally stored content library.
+![Preview](/public/images/profile-preview.png)
 
-Made purely for educational purposes.
+Initiated using Vite -> Client-side rendered app featuring an online database, authentication provided by Firebase.
 
 ## Tech Stack
 
+-   React
+-   React Router
+-   Vite
+-   TypeScript
 -   Firebase
--   react-loading-skeleton
--   tailwindcss
+-   Styled-components
 
 ## Architecture
 
@@ -16,11 +19,11 @@ Made purely for educational purposes.
     -   components
     -   constants
     -   context
+    -   firebase
     -   helpers
-    -   pages
-    -   lib (firebase resides here)
-    -   services (firebase functions will live here)
     -   hooks
+    -   interfaces
+    -   pages
+    -   services (firebase functions will live here)
     -   styles
-        -   app.css
-        -   tailwind.css
+        -   global-styles
