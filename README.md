@@ -29,3 +29,7 @@ Initiated using Vite -> Client-side rendered app featuring an online database, a
     -   services (firebase functions will live here)
     -   styles
         -   global-styles
+
+## Project Demo
+
+https://instagram-clone-36358.web.app/
